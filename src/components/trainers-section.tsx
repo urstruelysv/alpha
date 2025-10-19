@@ -43,7 +43,7 @@ const trainers = [
 
 export default function TrainersSection() {
   return (
-    <section id="trainers" className="py-20 bg-deep-purple/5">
+    <section id="trainers" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="heading-lg text-white mb-4">Meet Our Expert Trainers</h2>
@@ -56,7 +56,7 @@ export default function TrainersSection() {
           {trainers.map((trainer, index) => (
             <div
               key={index}
-              className="group rounded-lg overflow-hidden bg-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
+              className="group rounded-lg overflow-hidden bg-gray-900 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">

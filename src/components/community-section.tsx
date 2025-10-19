@@ -31,7 +31,7 @@ const communityEvents = [
 
 export default function CommunitySection() {
   return (
-    <section id="community" className="py-20 bg-black">
+    <section id="community" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="heading-lg text-white mb-4">Join the Alpha Community</h2>

@@ -106,8 +106,8 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 opacity: [0.2, 0.4, 0.2],
               }}
               transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-            />
-          </div>
+          />
+        </div>
 
           {/* Mute button */}
           <button
@@ -330,12 +330,12 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.08 }}
                 >
-                  <div className="text-[14rem] font-oswald font-black text-purple outline-purple-500 tracking-tighter leading-none whitespace-nowrap">
+                  <div className="text-[14rem] font-oswald text-purple-500 outline-purple-500 tracking-tighter leading-none whitespace-nowrap">
                     ALPHA FITNESS
-                  </div>
+        </div>
                   {/* <div className="text-[14rem] font-oswald font-black text-white tracking-tighter leading-none whitespace-nowrap">
                     ALPHA FITNESS
-                  </div>
+      </div>
                   <div className="text-[14rem] font-oswald font-black text-white tracking-tighter leading-none whitespace-nowrap">
                     ALPHA FITNESS
                   </div> */}
@@ -391,7 +391,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                     style={{ width: `${progress}%` }}
                     transition={{ duration: 0.1 }}
                   />
-                </div>
+    </div>
 
                 {/* Progress percentage */}
                 <motion.span
@@ -406,7 +406,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
                 {/* Subtitle */}
                 <motion.p
-                  className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/60 text-sm tracking-widest font-oswald"
+                  className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/60 text-lg tracking-widest font-oswald"
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >

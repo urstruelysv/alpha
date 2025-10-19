@@ -67,7 +67,7 @@ const pricingPlans = [
 
 export default function PricingSection() {
   return (
-    <section id="packages" className="py-20 bg-deep-purple/5">
+    <section id="packages" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="heading-lg text-white mb-4 animate-slide-up">Pricing Plans</h2>

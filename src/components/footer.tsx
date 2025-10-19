@@ -15,7 +15,7 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-deep-purple/10 border-t border-bright-purple/20 py-16">
+    <footer className="border-t border-bright-purple/20 py-16">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12 mb-12">
           {/* About */}
@@ -71,7 +71,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Your email"
-                className="w-full px-4 py-2 rounded-lg bg-black border border-bright-purple/30 text-white placeholder-white/40 focus:outline-none focus:border-bright-purple"
+                className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-bright-purple/30 text-white placeholder-white/40 focus:outline-none focus:border-bright-purple"
               />
               <button className="px-4 py-2 bg-bright-purple text-black font-semibold rounded-lg hover:bg-bright-purple/90">
                 Go

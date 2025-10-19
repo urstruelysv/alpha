@@ -16,7 +16,7 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="py-20 bg-deep-purple/5">
+    <section id="gallery" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="heading-lg text-white mb-4">Gallery</h2>
