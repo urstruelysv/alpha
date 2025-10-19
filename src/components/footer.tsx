@@ -82,7 +82,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-bright-purple/20 pt-8 text-center text-sm text-white/60">
-          <p>&copy; {new Date().getFullYear()} Alpha Fitness. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Aethos vison labs. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

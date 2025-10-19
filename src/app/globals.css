@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bright-purple: #A855F7;
+}
+
 :root {
   --background: oklch(14.5% 0 0);
   --foreground: #ededed;
