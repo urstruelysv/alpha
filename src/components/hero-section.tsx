@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 18 });
@@ -39,7 +40,13 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <motion.section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: 'easeInOut' }}
+    >
       {/* Background Video */}
       <video
         autoPlay
@@ -110,6 +117,6 @@ export default function HeroSection() {
           </svg>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

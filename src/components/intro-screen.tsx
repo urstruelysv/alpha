@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX } from 'lucide-react';
+import { useAudioPlayer } from '@/hooks/useAudioPlayer';
 
 interface IntroScreenProps {
   onComplete: () => void;
@@ -11,31 +12,12 @@ interface IntroScreenProps {
 export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const [step, setStep] = useState('start');
   const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
-  const [audioRef, setAudioRef] = useState<HTMLAudioElement | null>(null);
+  const { isMuted, toggleMute, playMusic } = useAudioPlayer();
 
   const startLoading = () => {
     setStep('loading');
-    if (audioRef) {
-      audioRef.play().catch(() => {});
-    }
+    playMusic();
   };
-
-  useEffect(() => {
-    const audio = new Audio('/bgMusic.mp3');
-    audio.loop = true;
-    audio.muted = isMuted;
-    setAudioRef(audio);
-    audio.play().catch(() => {});
-    return () => {
-      audio.pause();
-      audio.src = '';
-    };
-  }, []);
-
-  useEffect(() => {
-    if (audioRef) audioRef.muted = isMuted;
-  }, [isMuted, audioRef]);
 
   useEffect(() => {
     if (step === 'loading') {
@@ -97,7 +79,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
           {/* Mute button */}
           <button
-            onClick={() => setIsMuted(!isMuted)}
+            onClick={toggleMute}
             className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-bright-purple/50 transition-all z-20 backdrop-blur-sm"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >

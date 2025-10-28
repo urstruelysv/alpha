@@ -4,41 +4,18 @@ import { Award, Dumbbell } from 'lucide-react';
 
 const trainers = [
   {
-    name: 'Rajesh Kumar',
-    specialization: 'Strength & Conditioning',
-    image: '/placeholder.svg?height=300&width=300',
+    name: 'Mahesh_fitness1',
+    specialization: 'Body building , strength training (8 Years expirence )',
+    image: '/maheshmain.jpg?height=300&width=300',
     certifications: 'NASM, ACE',
   },
   {
-    name: 'Priya Sharma',
+    name: 'Uday kumar',
     specialization: "Women's Fitness & Yoga",
-    image: '/placeholder.svg?height=300&width=300',
+    image: 'placeholder/?height=300&width=300',
     certifications: 'ISSA, RYT-200',
   },
-  {
-    name: 'Arjun Singh',
-    specialization: 'Bodybuilding & Nutrition',
-    image: '/placeholder.svg?height=300&width=300',
-    certifications: 'IFBB, ISSN',
-  },
-  {
-    name: 'Divya Patel',
-    specialization: 'Cardio & Group Classes',
-    image: '/placeholder.svg?height=300&width=300',
-    certifications: 'ACE, NASM',
-  },
-  {
-    name: 'Vikram Reddy',
-    specialization: 'CrossFit & Functional Training',
-    image: '/placeholder.svg?height=300&width=300',
-    certifications: 'CrossFit L2, NASM',
-  },
-  {
-    name: 'Neha Gupta',
-    specialization: 'Rehabilitation & Physio',
-    image: '/placeholder.svg?height=300&width=300',
-    certifications: 'BPT, CSCS',
-  },
+  
 ];
 
 export default function TrainersSection() {
