@@ -40,10 +40,17 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Video Placeholder */}
-      <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20" />
-      </div>
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+      >
+        <source src="/gym%20final.MP4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black" />
 
       {/* Discount Badge */}
       <div className="absolute top-24 right-4 md:right-8 z-20 bg-bright-purple/20 border border-bright-purple rounded-lg p-4 backdrop-blur-sm animate-scale-in card-hover">
@@ -61,7 +68,7 @@ export default function HeroSection() {
           <h1 className="heading-xl mb-6 text-white">
             Alpha Fitness
             <br />
-            <span className="text-bright-purple">Shadnagar's Largest Gym</span>
+            <span className="text-bright-purple">Shadnagar's biggest premium Gym</span>
           </h1>
 
           <p className="text-body text-white/70 max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
