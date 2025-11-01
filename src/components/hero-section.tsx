@@ -98,13 +98,10 @@ export default function HeroSection() {
               <div className="text-sm text-white/60">Active Members</div>
             </div>
             <div className="group">
-              <div className="text-3xl md:text-4xl font-oswald font-bold text-bright-purple group-hover:scale-110 transition-transform duration-300">50+</div>
+              <div className="text-3xl md:text-4xl font-oswald font-bold text-bright-purple group-hover:scale-110 transition-transform duration-300">10+</div>
               <div className="text-sm text-white/60">Expert Trainers</div>
             </div>
-            <div className="group">
-              <div className="text-3xl md:text-4xl font-oswald font-bold text-bright-purple group-hover:scale-110 transition-transform duration-300">24/7</div>
-              <div className="text-sm text-white/60">Access</div>
-            </div>
+          
           </div>
         </div>
       </div>
