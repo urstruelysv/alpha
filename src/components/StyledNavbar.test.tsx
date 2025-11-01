@@ -41,25 +41,24 @@ describe('StyledNavbar', () => {
         render(<StyledNavbar />);
         const toggleButton = screen.getByLabelText('Toggle menu');
 
-        // Menu should be closed initially. We check for a link that is only in the mobile menu.
-        // The mobile menu links are plain `<a>` tags.
-        expect(screen.queryByText('Contact')).toBeInTheDocument();
+        // Menu should be closed initially.
+        expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
 
         // Open menu
         fireEvent.click(toggleButton);
 
         // Wait for menu to appear and check for a link
         await waitFor(() => {
-            const mobileMenu = screen.getByText("Contact").closest('div');
+            const mobileMenu = screen.getByTestId('mobile-menu');
             expect(mobileMenu).toBeVisible();
+            expect(within(mobileMenu).getByText('Contact')).toBeVisible();
         });
 
         // Close menu by clicking the toggle button again
         fireEvent.click(toggleButton);
 
         await waitFor(() => {
-            const mobileMenu = screen.getByText("Contact").closest('div');
-            expect(mobileMenu).not.toBeVisible();
+            expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
         });
     });
 

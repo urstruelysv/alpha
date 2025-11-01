@@ -8,7 +8,7 @@ describe('WomensSection', () => {
     expect(screen.getByText(/Our women-only fitness programs are designed to create a supportive/i)).toBeInTheDocument();
   });
 
-  it('renders the list of features for the women's program', () => {
+  it('renders the list of features for the women\'s program', () => {
     render(<WomensSection />);
     expect(screen.getByText('Expert female trainers')).toBeInTheDocument();
     expect(screen.getByText('Women-only training hours')).toBeInTheDocument();

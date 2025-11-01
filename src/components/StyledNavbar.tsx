@@ -57,6 +57,7 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            data-testid="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

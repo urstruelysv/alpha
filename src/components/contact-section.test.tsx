@@ -38,10 +38,8 @@ describe('ContactSection', () => {
     const submitButton = screen.getByRole('button', { name: /Send Message/i });
     fireEvent.click(submitButton);
 
-    await waitFor(() => {
-      expect(screen.getByText('Please enter a valid 10-digit phone number')).toBeInTheDocument();
-      expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
-    });
+    expect(await screen.findByText('Please enter a valid 10-digit phone number')).toBeInTheDocument();
+    expect(await screen.findByText('Please enter a valid email address')).toBeInTheDocument();
   });
 
   it('submits the form successfully with valid data and shows success message', async () => {
@@ -63,10 +61,8 @@ describe('ContactSection', () => {
     });
 
     // Check for success message and form data logging
-    await waitFor(() => {
-      expect(screen.getByText(/Thank you! We'll get back to you soon./i)).toBeInTheDocument();
-      expect(consoleSpy).toHaveBeenCalledWith('Form submitted:', expect.any(Object));
-    });
+    expect(await screen.findByText(/Thank you! We'll get back to you soon./i)).toBeInTheDocument();
+    expect(consoleSpy).toHaveBeenCalledWith('Form submitted:', expect.any(Object));
 
     // Check if the form fields are cleared after successful submission
     expect(screen.getByLabelText('Full Name')).toHaveValue('');
