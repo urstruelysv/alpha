@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import IntroScreen from './intro-screen';
 import { useAudioPlayer } from '@/hooks/useAudioPlayer';
 
@@ -11,17 +11,24 @@ jest.mock('@/hooks/useAudioPlayer', () => ({
 jest.mock('framer-motion', () => {
     const React = require('react');
     const { forwardRef } = React;
+    
+    // Filter out framer-motion specific props
+    const filterMotionProps = (props: any) => {
+        const { whileHover, whileTap, animate, transition, exit, initial, ...rest } = props;
+        return rest;
+    };
+    
     const motion = {
-        div: forwardRef((props, ref) => <div ref={ref} {...props} />),
-        button: forwardRef((props, ref) => <button ref={ref} {...props} />),
-        h1: forwardRef((props, ref) => <h1 ref={ref} {...props} />),
-        p: forwardRef((props, ref) => <p ref={ref} {...props} />),
-        span: forwardRef((props, ref) => <span ref={ref} {...props} />),
-        img: forwardRef((props, ref) => <img ref={ref} {...props} />),
+        div: forwardRef((props: any, ref: any) => <div ref={ref} {...filterMotionProps(props)} />),
+        button: forwardRef((props: any, ref: any) => <button ref={ref} {...filterMotionProps(props)} />),
+        h1: forwardRef((props: any, ref: any) => <h1 ref={ref} {...filterMotionProps(props)} />),
+        p: forwardRef((props: any, ref: any) => <p ref={ref} {...filterMotionProps(props)} />),
+        span: forwardRef((props: any, ref: any) => <span ref={ref} {...filterMotionProps(props)} />),
+        img: forwardRef((props: any, ref: any) => <img ref={ref} {...filterMotionProps(props)} />),
     };
     return {
         motion,
-        AnimatePresence: ({ children }) => <>{children}</>,
+        AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
     };
 });
 
@@ -72,13 +79,17 @@ describe('IntroScreen', () => {
     const startButton = screen.getByRole('button', { name: /YOUR BODY GETS TRANSFORMED/i });
     fireEvent.click(startButton);
 
-    // Fast-forward timers to complete the loading progress
+    // Progress increments every 40ms from 0 to 100 (100 intervals = 4000ms)
+    // Then 1000ms delay before step becomes 'finished'
+    // Then 1200ms delay before onComplete is called
+    // Total: 4000 + 1000 + 1200 = 6200ms
+    // Use runAllTimers to execute all pending timers
     act(() => {
-        jest.advanceTimersByTime(40 * 100 + 1000 + 1200);
+        jest.runAllTimers();
     });
     
     await waitFor(() => {
         expect(mockOnComplete).toHaveBeenCalledTimes(1);
-    });
+    }, { timeout: 1000 });
   });
 });

@@ -3,20 +3,42 @@
 import { useState } from 'react';
 import { LogIn } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simple demo authentication
-    if (credentials.email === 'admin@alphafitness.in' && credentials.password === 'admin123') {
-      localStorage.setItem('admin-token', 'demo-token');
-      window.location.href = '/admin';
-    } else {
-      setError('Invalid credentials. Use admin@alphafitness.in / admin123');
+    setError('');
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        setError(data.error || 'Login failed. Please check your credentials.');
+        return;
+      }
+
+      const redirectTo = searchParams.get('redirect') || '/admin';
+      router.push(redirectTo);
+    } catch (err) {
+      console.error('Admin login failed', err);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -62,15 +84,16 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-bright-purple text-black font-semibold rounded-lg hover:bg-bright-purple/90 transition-colors flex items-center justify-center gap-2"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-bright-purple text-black font-semibold rounded-lg hover:bg-bright-purple/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             <LogIn size={18} />
-            Login
+            {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         <p className="text-center text-white/60 text-sm mt-6">
-          Demo credentials: admin@alphafitness.in / admin123
+          Admin access is restricted. Contact the site owner if you need credentials.
         </p>
 
         <div className="mt-8 pt-8 border-t border-bright-purple/20">

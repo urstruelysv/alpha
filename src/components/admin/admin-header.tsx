@@ -2,11 +2,21 @@
 
 import { LogOut, Settings } from 'lucide-react';
 import Link from 'next/link';
-
+import { useState } from 'react';
+ 
 export default function AdminHeader() {
-  const handleLogout = () => {
-    localStorage.removeItem('admin-token');
-    window.location.href = '/admin/login';
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Logout failed', err);
+    } finally {
+      setLoading(false);
+      window.location.href = '/admin/login';
+    }
   };
 
   return (
@@ -25,10 +35,11 @@ export default function AdminHeader() {
           </button>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 text-white/60 hover:text-white transition-colors"
+            disabled={loading}
+            className="flex items-center gap-2 px-4 py-2 text-white/60 hover:text-white disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
             <LogOut size={18} />
-            Logout
+            {loading ? 'Logging out...' : 'Logout'}
           </button>
         </div>
       </div>

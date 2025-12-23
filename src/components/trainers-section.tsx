@@ -1,24 +1,40 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Award, Dumbbell } from 'lucide-react';
 
-const trainers = [
-  {
-    name: 'Mahesh_fitness1',
-    specialization: 'Body building , strength training (8 Years expirence )',
-    image: '/maheshmain.jpg?height=300&width=300',
-    certifications: 'NASM, ACE',
-  },
-  {
-    name: 'Uday kumar',
-    specialization: "Women's Fitness & Yoga",
-    image: 'placeholder/?height=300&width=300',
-    certifications: 'ISSA, RYT-200',
-  },
-  
-];
+type Trainer = {
+  id: string;
+  name: string;
+  role: string;
+  imageUrl: string;
+};
 
 export default function TrainersSection() {
+  const [trainers, setTrainers] = useState<Trainer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchTrainers = async () => {
+      try {
+        const res = await fetch('/api/trainers', { cache: 'no-store' });
+        if (!res.ok) {
+          throw new Error('Failed to load trainers');
+        }
+        const data = (await res.json()) as Trainer[];
+        setTrainers(data);
+      } catch (err) {
+        console.error(err);
+        setError('Could not load trainers.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTrainers();
+  }, []);
+
   return (
     <section id="trainers" className="py-20">
       <div className="container-custom">
@@ -29,41 +45,51 @@ export default function TrainersSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {trainers.map((trainer, index) => (
-            <div
-              key={index}
-              className="group rounded-lg overflow-hidden bg-gray-900 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
-            >
-              {/* Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={trainer.image || "/placeholder.svg"}
-                  alt={trainer.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="heading-md text-white mb-1">{trainer.name}</h3>
-                <p className="text-bright-purple text-sm font-oswald uppercase tracking-wider mb-4">
-                  {trainer.specialization}
-                </p>
-
-                <div className="flex items-center gap-2 mb-4 text-white/60 text-sm">
-                  <Award className="w-4 h-4" />
-                  <span>{trainer.certifications}</span>
+        {loading ? (
+          <p className="text-white/80 text-center">Loading trainers...</p>
+        ) : error ? (
+          <p className="text-red-400 text-center">{error}</p>
+        ) : trainers.length === 0 ? (
+          <p className="text-white/60 text-center">
+            Trainers will appear here once added from the admin portal.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {trainers.map((trainer) => (
+              <div
+                key={trainer.id}
+                className="group rounded-lg overflow-hidden bg-gray-900 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
+              >
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={trainer.imageUrl || '/placeholder.svg'}
+                    alt={trainer.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 </div>
 
-                <button className="w-full py-2 rounded-lg border border-bright-purple text-bright-purple hover:bg-bright-purple hover:text-black transition-all duration-200 text-sm font-semibold">
-                  Book Session
-                </button>
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="heading-md text-white mb-1">{trainer.name}</h3>
+                  <p className="text-bright-purple text-sm font-oswald uppercase tracking-wider mb-4">
+                    {trainer.role || 'Trainer'}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-4 text-white/60 text-sm">
+                    <Award className="w-4 h-4" />
+                    <span>Certified Fitness Professional</span>
+                  </div>
+
+                  <button className="w-full py-2 rounded-lg border border-bright-purple text-bright-purple hover:bg-bright-purple hover:text-black transition-all duration-200 text-sm font-semibold">
+                    Book Session
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

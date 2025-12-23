@@ -21,20 +21,31 @@ describe('TestimonialsTab', () => {
   });
 
   it('renders the star rating for each testimonial', () => {
-    render(<TestimonialsTab />);
-    // Both testimonials have 5 stars, so we should find 10 star icons
-    const stars = screen.getAllByRole('img', { name: /star/i }); // Assuming lucide-react icons have role 'img' and a title/name
-    // This is not a reliable selector. A better way is to check the container.
+    const { container } = render(<TestimonialsTab />);
+    // Both testimonials have 5 stars each
+    // Check that testimonial cards are rendered (which contain the stars)
     const testimonialCards = screen.getAllByText(/transformed my fitness journey|Best gym experience ever/);
     expect(testimonialCards.length).toBe(2);
+    // Verify stars are rendered by checking for Star SVG elements (lucide-react icons render as SVG)
+    const starSvgs = container.querySelectorAll('svg.lucide-star');
+    expect(starSvgs.length).toBe(10); // 5 stars × 2 testimonials
   });
 
   it('renders edit and delete buttons for each testimonial', () => {
-    render(<TestimonialsTab />);
+    const { container } = render(<TestimonialsTab />);
     // For 2 testimonials, there should be 2 edit and 2 delete buttons
-    const editButtons = screen.getAllByRole('button', { name: /edit/i });
-    const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
-    expect(editButtons.length).toBe(2);
-    expect(deleteButtons.length).toBe(2);
+    // Edit buttons contain Edit2 icons, delete buttons contain Trash2 icons
+    // Find buttons by their icon SVG elements
+    const editIcons = container.querySelectorAll('svg.lucide-edit-2');
+    const deleteIcons = container.querySelectorAll('svg.lucide-trash-2');
+    expect(editIcons.length).toBe(2);
+    expect(deleteIcons.length).toBe(2);
+    // Verify they are inside buttons
+    editIcons.forEach(icon => {
+      expect(icon.closest('button')).toBeInTheDocument();
+    });
+    deleteIcons.forEach(icon => {
+      expect(icon.closest('button')).toBeInTheDocument();
+    });
   });
 });

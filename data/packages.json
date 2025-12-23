@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "name": "Monthly",
+    "price": "₹1,200",
+    "type": "membership",
+    "order": 1,
+    "description": "",
+    "note": ""
+  },
+  {
+    "id": "2",
+    "name": "3 Months",
+    "price": "₹3,500",
+    "type": "membership",
+    "order": 2,
+    "description": "",
+    "note": ""
+  },
+  {
+    "id": "3",
+    "name": "6 Months",
+    "price": "₹6,999",
+    "type": "membership",
+    "order": 3,
+    "description": "",
+    "note": ""
+  },
+  {
+    "id": "4",
+    "name": "12 Months",
+    "price": "₹13,999",
+    "type": "membership",
+    "order": 4,
+    "description": "",
+    "note": ""
+  },
+  {
+    "id": "5",
+    "name": "One-on-One Coaching",
+    "price": "Customized programs for faster, focused results",
+    "type": "personal-training",
+    "note": "Pricing on consultation",
+    "order": 5
+  }
+]

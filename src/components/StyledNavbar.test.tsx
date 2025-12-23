@@ -1,5 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import StyledNavbar from './StyledNavbar';
+import { JSX, ClassAttributes, HTMLAttributes, Ref, ButtonHTMLAttributes } from 'react';
 
 // Mock framer-motion for simpler testing, and next/link
 jest.mock('framer-motion', () => {
@@ -7,8 +8,8 @@ jest.mock('framer-motion', () => {
     const { forwardRef } = React;
     return {
         motion: {
-            div: forwardRef((props, ref) => <div ref={ref} {...props} />),
-            button: forwardRef((props, ref) => <button ref={ref} {...props} />),
+            div: forwardRef((props: JSX.IntrinsicAttributes & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement> | undefined) => <div ref={ref} {...props} />),
+            button: forwardRef((props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>, ref: Ref<HTMLButtonElement> | undefined) => <button ref={ref} {...props} />),
         },
         AnimatePresence: ({ children }) => <>{children}</>,
     };

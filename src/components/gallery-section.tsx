@@ -1,19 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 
-const galleryItems = [
-  { id: 1, title: 'Strength Training', image: '/placeholder.svg?height=300&width=300' },
-  { id: 2, title: 'Group Classes', image: '/placeholder.svg?height=300&width=600' },
-  { id: 3, title: 'Cardio Zone', image: '/placeholder.svg?height=600&width=300' },
-  { id: 4, title: 'Yoga Studio', image: '/placeholder.svg?height=300&width=300' },
-  { id: 5, title: 'Personal Training', image: '/placeholder.svg?height=300&width=300' },
-  { id: 6, title: 'Community Events', image: '/placeholder.svg?height=300&width=600' },
-];
+type GalleryImage = {
+  id: string;
+  url: string;
+  alt?: string;
+};
 
 export default function GallerySection() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [items, setItems] = useState<GalleryImage[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await fetch('/api/gallery', { cache: 'no-store' });
+        if (!res.ok) {
+          throw new Error('Failed to load gallery');
+        }
+        const data = (await res.json()) as GalleryImage[];
+        setItems(data);
+      } catch (err) {
+        console.error(err);
+        setError('Could not load gallery images.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGallery();
+  }, []);
+
+  const selected = selectedId
+    ? items.find((item) => item.id === selectedId) || null
+    : null;
 
   return (
     <section id="gallery" className="py-20">
@@ -25,41 +49,52 @@ export default function GallerySection() {
           </p>
         </div>
 
-        {/* Masonry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-max">
-          {galleryItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setSelectedImage(item.id)}
-              className={`group relative rounded-lg overflow-hidden cursor-pointer ${
-                item.id === 2 || item.id === 6 ? 'md:col-span-2' : ''
-              } ${item.id === 3 ? 'md:row-span-2' : ''}`}
-            >
-              <img
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-end p-4">
-                <h3 className="text-white font-oswald font-semibold">{item.title}</h3>
+        {loading ? (
+          <p className="text-white/80 text-center">Loading gallery...</p>
+        ) : error ? (
+          <p className="text-red-400 text-center">{error}</p>
+        ) : items.length === 0 ? (
+          <p className="text-white/60 text-center">
+            Gallery is coming soon. Check back after the team adds photos.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-max">
+            {items.map((item, index) => (
+              <div
+                key={item.id}
+                onClick={() => setSelectedId(item.id)}
+                className={`group relative rounded-lg overflow-hidden cursor-pointer ${
+                  index % 6 === 1 || index % 6 === 5 ? 'md:col-span-2' : ''
+                } ${index % 6 === 2 ? 'md:row-span-2' : ''}`}
+              >
+                <img
+                  src={item.url || '/placeholder.svg'}
+                  alt={item.alt || 'Gallery image'}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-end p-4">
+                  <h3 className="text-white font-oswald font-semibold">
+                    {item.alt || 'Gallery'}
+                  </h3>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Lightbox */}
-        {selectedImage && (
+        {selected && (
           <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
             <button
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedId(null)}
               className="absolute top-4 right-4 p-2 bg-bright-purple rounded-full hover:bg-bright-purple/80 transition-colors"
               aria-label="Close lightbox"
             >
               <X className="w-6 h-6 text-black" />
             </button>
             <img
-              src={galleryItems.find((item) => item.id === selectedImage)?.image || "/placeholder.svg"}
-              alt="Gallery"
+              src={selected.url || '/placeholder.svg'}
+              alt={selected.alt || 'Gallery'}
               className="max-w-4xl max-h-[80vh] object-contain rounded-lg"
             />
           </div>

@@ -81,10 +81,20 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call - replace with actual backend endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      console.log('Form submitted:', formData);
+      if (!res.ok) {
+        // Optionally, you can read the error message from the response
+        console.error('Failed to submit contact form', await res.text());
+        return;
+      }
+
       setSubmitSuccess(true);
       setFormData({
         name: '',

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { X, Menu } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const NavbarButton = ({ children, variant, className, ...props }: { children: React.ReactNode, variant: 'primary' | 'secondary', className?: string, onClick?: () => void }) => {
   const baseClasses = "px-4 py-2 font-oswald font-bold text-sm uppercase tracking-widest rounded-lg overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_20px_rgba(124,58,237,0.3)] transition-all duration-300";
@@ -86,6 +87,7 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
   
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const router = useRouter();
   
     useEffect(() => {
       const handleScroll = () => {
@@ -121,7 +123,12 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
                     <NavItems items={navItems} />
                 </div>
                 <div className="hidden lg:flex items-center gap-4">
-                    <NavbarButton variant="secondary">Login</NavbarButton>
+                    <NavbarButton
+                      variant="secondary"
+                      onClick={() => router.push('/admin')}
+                    >
+                      Login
+                    </NavbarButton>
                     <NavbarButton variant="primary">Start Free Trial</NavbarButton>
                 </div>
                 <MobileNavToggle isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
@@ -140,7 +147,10 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
             ))}
             <div className="flex flex-col gap-4 pt-8 mt-8 border-t border-bright-purple/20 w-full max-w-xs">
               <NavbarButton
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  closeMobileMenu();
+                  router.push('/admin');
+                }}
                 variant="secondary"
                 className="w-full"
               >

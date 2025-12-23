@@ -4,26 +4,62 @@ import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function HeroSection() {
-  const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 18 });
+type DiscountConfig = {
+  percentage: number;
+  days: number;
+  hours: number;
+  minutes: number;
+};
 
+export default function HeroSection() {
+  const [discount, setDiscount] = useState<DiscountConfig | null>(null);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  // Load discount from backend
+  useEffect(() => {
+    const loadDiscount = async () => {
+      try {
+        const res = await fetch('/api/discount', { cache: 'no-store' });
+        if (!res.ok) {
+          throw new Error('Failed to load discount');
+        }
+        const data = (await res.json()) as DiscountConfig;
+        setDiscount(data);
+        setTimeLeft({
+          days: data.days,
+          hours: data.hours,
+          minutes: data.minutes,
+          seconds: 0,
+        });
+      } catch (err) {
+        console.error('Failed to load discount config', err);
+        // Fallback default if API fails
+        setDiscount({ percentage: 50, days: 2, hours: 14, minutes: 32 });
+        setTimeLeft({ days: 2, hours: 14, minutes: 32, seconds: 0 });
+      }
+    };
+
+    loadDiscount();
+  }, []);
+
+  // Countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         let { days, hours, minutes, seconds } = prev;
-        seconds--;
+        seconds -= 1;
 
         if (seconds < 0) {
           seconds = 59;
-          minutes--;
+          minutes -= 1;
         }
         if (minutes < 0) {
           minutes = 59;
-          hours--;
+          hours -= 1;
         }
         if (hours < 0) {
           hours = 23;
-          days--;
+          days -= 1;
         }
         if (days < 0) {
           days = 0;
@@ -60,14 +96,22 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black" />
 
       {/* Discount Badge */}
-      <div className="absolute top-24 right-4 md:right-8 z-20 bg-bright-purple/20 border border-bright-purple rounded-lg p-4 backdrop-blur-sm animate-scale-in card-hover">
-        <div className="text-xs font-oswald text-bright-purple uppercase tracking-wider mb-2">Limited Offer</div>
-        <div className="text-2xl font-oswald font-bold text-white mb-2">50% OFF</div>
-        <div className="text-xs text-white/70">
-          {String(timeLeft.days).padStart(2, '0')}:{String(timeLeft.hours).padStart(2, '0')}:
-          {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+      {discount && (
+        <div className="absolute top-24 right-4 md:right-8 z-20 bg-bright-purple/20 border border-bright-purple rounded-lg p-4 backdrop-blur-sm animate-scale-in card-hover">
+          <div className="text-xs font-oswald text-bright-purple uppercase tracking-wider mb-2">
+            Limited Offer
+          </div>
+          <div className="text-2xl font-oswald font-bold text-white mb-2">
+            {discount.percentage}% OFF
+          </div>
+          <div className="text-xs text-white/70">
+            {String(timeLeft.days).padStart(2, '0')}:
+            {String(timeLeft.hours).padStart(2, '0')}:
+            {String(timeLeft.minutes).padStart(2, '0')}:
+            {String(timeLeft.seconds).padStart(2, '0')}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10 container-custom text-center">

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react'; 
 import AnimatedCard from './animated-card';
 
 // Mock the IntersectionObserver API for testing in a JSDOM environment

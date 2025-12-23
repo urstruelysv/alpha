@@ -1,131 +1,153 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import AnimatedCard from './animated-card';
 
-const pricingPlans = [
+const plans = [
   {
-    name: '1 Month',
-    price: '₹2,999',
-    period: '/month',
-    description: 'Perfect for trying us out',
-    features: [
-      'Full gym access',
-      'Locker facility',
-      'Basic equipment training',
-      'Community access',
+    name: 'Monthly',
+    price: '₹1,500',
+    note: 'Good if you’re just starting or getting back after a break.',
+    points: [
+      'Use the gym freely during working hours',
+      'Get basic help when you’re unsure',
+      'Figure out your routine and timing',
     ],
-    highlighted: false,
   },
   {
     name: '3 Months',
-    price: '₹7,999',
-    period: '/3 months',
-    description: 'Most popular choice',
-    features: [
-      'Full gym access',
-      'Locker facility',
-      'Equipment training',
-      'Community access',
-      '2 free sessions with trainer',
-      'Nutrition consultation',
+    price: '₹3,500',
+    note: 'This is where most people stop skipping workouts.',
+    points: [
+      'Train regularly without thinking about renewals',
+      'Exercises adjusted as your body improves',
+      'Better understanding of form and pace',
     ],
-    highlighted: true,
   },
   {
     name: '6 Months',
-    price: '₹13,999',
-    period: '/6 months',
-    description: 'Best value',
-    features: [
-      'Full gym access',
-      'Premium locker',
-      'Equipment training',
-      'Community access',
-      '4 free sessions with trainer',
-      'Monthly nutrition plans',
-      'Progress tracking',
+    price: '₹6,999',
+    note: 'You’ll start seeing real physical change here.',
+    points: [
+      'Strength and fat loss become noticeable',
+      'Your routine evolves as you grow stronger',
+      'Training starts feeling natural, not forced',
     ],
-    highlighted: false,
   },
   {
-    name: 'Personal Training',
-    price: '₹5,999',
-    period: '/month',
-    description: 'Dedicated coaching',
-    features: [
-      'Full gym access',
-      '4 sessions/month',
-      'Custom workout plans',
-      'Nutrition guidance',
-      'Progress tracking',
-      'Priority scheduling',
+    name: '12 Months',
+    price: '₹13,999',
+    highlight: true,
+    note: 'For people who are serious about staying fit long-term.',
+    points: [
+      'One full year of consistent training',
+      'Your body actually adapts and settles',
+      '1 Month of personal training included',
+      'Less guessing, more direction',
     ],
-    highlighted: false,
   },
 ];
 
 export default function PricingSection() {
   return (
-    <section id="packages" className="py-20">
-      <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4 animate-slide-up">Pricing Plans</h2>
-          <p className="text-body text-white/60 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '100ms' }}>
-            Choose the perfect plan for your fitness journey
-          </p>
-        </div>
+    <section
+      id="pricing"
+      className="relative py-16 px-4 sm:px-6 bg-zinc-950"
+    >
+      {/* Subtle purple depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-transparent pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pricingPlans.map((plan, index) => (
-            <AnimatedCard key={index} delay={index * 100}>
-              <div
-                className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
-                  plan.highlighted
-                    ? 'ring-2 ring-bright-purple scale-105 md:scale-110'
-                    : 'border border-bright-purple/20'
-                } ${plan.highlighted ? 'bg-bright-purple/10' : 'bg-deep-purple/10'} card-hover`}
-              >
-                {plan.highlighted && (
-                  <div className="absolute top-0 left-0 right-0 bg-bright-purple text-black py-2 text-center text-sm font-oswald font-bold animate-pulse-glow">
-                    BEST VALUE
-                  </div>
-                )}
+      {/* Intro */}
+      <div className="relative max-w-3xl mx-auto text-center mb-14">
+        <p className="text-sm text-purple-400 mb-2">
+          Alpha Fitness, Shadnagar
+        </p>
 
-                <div className={`p-8 ${plan.highlighted ? 'pt-16' : ''}`}>
-                  <h3 className="heading-md text-white mb-2">{plan.name}</h3>
-                  <p className="text-white/60 text-sm mb-4">{plan.description}</p>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-4">
+          Choose how long you want to stay consistent.
+        </h2>
 
-                  <div className="mb-6">
-                    <span className="text-4xl font-oswald font-bold text-bright-purple">
-                      {plan.price}
-                    </span>
-                    <span className="text-white/60 text-sm">{plan.period}</span>
-                  </div>
+        <p className="text-zinc-400">
+          No complicated plans. No fake promises.  
+          Just pick how long you’re willing to show up.
+        </p>
+      </div>
 
-                  <button
-                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 mb-6 ${
-                      plan.highlighted
-                        ? 'bg-bright-purple text-black hover:bg-bright-purple/90'
-                        : 'border-2 border-bright-purple text-bright-purple hover:bg-bright-purple hover:text-black'
-                    }`}
-                  >
-                    Join Now
-                  </button>
+      {/* Plans */}
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {plans.map((plan) => (
+          <motion.div
+            key={plan.name}
+            whileHover={{ scale: 1.015 }}
+            transition={{ duration: 0.15 }}
+            className={`rounded-xl border p-6 bg-zinc-900/80 backdrop-blur
+              ${
+                plan.highlight
+                  ? 'border-purple-500'
+                  : 'border-zinc-800'
+              }`}
+          >
+            {plan.highlight && (
+              <p className="text-xs text-purple-400 mb-2">
+                Most long-term members choose this
+              </p>
+            )}
 
-                  <div className="space-y-3">
-                    {plan.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-bright-purple flex-shrink-0 mt-0.5" />
-                        <span className="text-white/70 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+            <h3 className="text-xl font-medium text-white">
+              {plan.name}
+            </h3>
+
+            <p className="text-3xl font-semibold text-white mt-3">
+              {plan.price}
+            </p>
+
+            <p className="text-sm text-zinc-400 mt-3">
+              {plan.note}
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {plan.points.map((point) => (
+                <div key={point} className="flex gap-2">
+                  <Check className="w-4 h-4 text-purple-400 mt-1" />
+                  <span className="text-sm text-zinc-300">
+                    {point}
+                  </span>
                 </div>
-              </div>
-            </AnimatedCard>
-          ))}
-        </div>
+              ))}
+            </div>
+
+            <button
+              className={`mt-8 w-full py-3 rounded-lg text-sm font-medium transition
+                ${
+                  plan.highlight
+                    ? 'bg-purple-500 text-white hover:bg-purple-600'
+                    : 'bg-zinc-800 text-white hover:bg-zinc-700'
+                }`}
+            >
+              Join Alpha Fitness
+            </button>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Personal Training */}
+      <div className="relative max-w-4xl mx-auto mt-20 text-center">
+        <h3 className="text-2xl font-semibold text-white mb-4">
+          Personal Training (One-on-One)
+        </h3>
+
+        <p className="text-zinc-400 max-w-2xl mx-auto mb-4">
+          This is for people who don’t want to figure things out alone.
+          You train with a coach, follow a clear plan, and stay accountable.
+        </p>
+
+        <p className="text-sm text-zinc-500 mb-6">
+          Pricing depends on your goals, schedule, and starting point.
+        </p>
+
+        <button className="px-6 py-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-sm font-medium transition">
+          Talk to a Trainer
+        </button>
       </div>
     </section>
   );
