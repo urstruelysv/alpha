@@ -24,14 +24,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  const { name, price, type, description, note, order } = body as {
-    name?: string;
-    price?: string;
-    type?: 'membership' | 'personal-training';
-    description?: string;
-    note?: string;
-    order?: number;
-  };
+  const { name, price, type, description, note, order, line, features, popular, icon } = body as Partial<Package>;
 
   if (!name || !price || !type) {
     return NextResponse.json(
@@ -49,6 +42,10 @@ export async function POST(request: NextRequest) {
     description,
     note,
     order: typeof order === 'number' ? order : packages.length + 1,
+    line,
+    features,
+    popular,
+    icon,
   };
 
   packages.push(pkg);
@@ -71,15 +68,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  const { id, name, price, type, description, note, order } = body as {
-    id?: string;
-    name?: string;
-    price?: string;
-    type?: 'membership' | 'personal-training';
-    description?: string;
-    note?: string;
-    order?: number;
-  };
+  const { id, ...updateData } = body as Partial<Package> & { id?: string };
 
   if (!id) {
     return NextResponse.json({ error: 'id is required' }, { status: 400 });
@@ -92,12 +81,8 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'Package not found' }, { status: 404 });
   }
 
-  if (name !== undefined) packages[index].name = name;
-  if (price !== undefined) packages[index].price = price;
-  if (type !== undefined) packages[index].type = type;
-  if (description !== undefined) packages[index].description = description;
-  if (note !== undefined) packages[index].note = note;
-  if (order !== undefined) packages[index].order = order;
+  // Merge the existing package with the update data
+  packages[index] = { ...packages[index], ...updateData };
 
   await savePackages(packages);
 

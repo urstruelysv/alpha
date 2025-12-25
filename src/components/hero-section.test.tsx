@@ -1,47 +1,63 @@
-
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import HeroSection from './hero-section';
+import '@testing-library/jest-dom';
 
-// Mock framer-motion
-jest.mock('framer-motion', () => ({
-  ...jest.requireActual('framer-motion'),
-  motion: {
-    section: ({ children, ...props }) => <section {...props}>{children}</section>,
-  },
-}));
+// Mock framer-motion to render the underlying elements without animation
+// and filter out motion-specific props to avoid React warnings.
+jest.mock('framer-motion', () => {
+  const actual = jest.requireActual('framer-motion');
+  
+  const motion = (Component: React.ElementType) => {
+    const MockComponent = ({ children, variants, initial, animate, whileInView, viewport, custom, ...props }: any) => (
+      <Component {...props}>{children}</Component>
+    );
+    MockComponent.displayName = `MockMotion${Component}`;
+    return MockComponent;
+  };
+
+  const proxy = new Proxy(motion, {
+    get: (target, prop) => {
+      return motion(prop as React.ElementType);
+    },
+  });
+
+  return {
+    ...actual,
+    motion: proxy,
+  };
+});
 
 describe('HeroSection', () => {
-  it('renders the background video with correct attributes', () => {
-    const { container } = render(<HeroSection />);
-    const videoElement = container.querySelector('video');
-    expect(videoElement).toBeInTheDocument();
-    expect(videoElement).toHaveAttribute('autoPlay');
-    expect(videoElement).toHaveAttribute('loop');
-    expect(videoElement).toHaveAttribute('muted');
-    expect(videoElement).toHaveAttribute('playsInline');
-
-    const sourceElement = container.querySelector('source');
-    expect(sourceElement).toBeInTheDocument();
-    expect(sourceElement).toHaveAttribute('src', '/gym%20final.MP4');
-    expect(sourceElement).toHaveAttribute('type', 'video/mp4');
-  });
-
   it('renders the main heading and subheading', () => {
     render(<HeroSection />);
-    expect(screen.getByText(/Alpha Fitness/i)).toBeInTheDocument();
-    expect(screen.getByText(/Shadnagar's biggest premium Gym/i)).toBeInTheDocument();
+    expect(screen.getByText(/WE ARE/i)).toBeInTheDocument();
+    expect(screen.getByText(/alpha/i)).toBeInTheDocument();
+    expect(screen.getByText(/A fitness movement in/i)).toBeInTheDocument();
   });
 
-  it('renders the call-to-action buttons', () => {
+  it('renders the call-to-action button', () => {
     render(<HeroSection />);
-    expect(screen.getByRole('button', { name: /Start Free Trial/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /View Packages/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /EXPLORE MEMBERSHIPS/i })).toBeInTheDocument();
   });
 
-  it('renders the stats section', () => {
+  it('scrolls to the pricing section when the CTA button is clicked', () => {
+    // Mock scrollIntoView
+    const scrollIntoViewMock = jest.fn();
+    const mockElement = { scrollIntoView: scrollIntoViewMock };
+    jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+      if (id === 'pricing') {
+        return mockElement as unknown as HTMLElement;
+      }
+      return null;
+    });
+
     render(<HeroSection />);
-    expect(screen.getByText(/Active Members/i)).toBeInTheDocument();
-    expect(screen.getByText(/Expert Trainers/i)).toBeInTheDocument();
-    expect(screen.getByText(/Access/i)).toBeInTheDocument();
+    
+    const ctaButton = screen.getByRole('button', { name: /EXPLORE MEMBERSHIPS/i });
+    fireEvent.click(ctaButton);
+
+    expect(document.getElementById).toHaveBeenCalledWith('pricing');
+    expect(scrollIntoViewMock).toHaveBeenCalledWith({ behavior: 'smooth' });
   });
 });

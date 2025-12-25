@@ -1,15 +1,17 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import AdminHeader from './admin-header';
 
 describe('AdminHeader', () => {
-  // Mock window.location for testing navigation
   const originalLocation = window.location;
-  beforeAll(() => {
-    delete window.location;
-    window.location = { ...originalLocation, href: '' };
+
+  beforeEach(() => {
+    // Mock localStorage
+    jest.spyOn(window.localStorage.__proto__, 'removeItem');
   });
-  afterAll(() => {
+
+  afterEach(() => {
     window.location = originalLocation;
+    jest.restoreAllMocks();
   });
 
   it('renders the header with logo and admin title', () => {
@@ -20,24 +22,32 @@ describe('AdminHeader', () => {
 
   it('renders settings and logout buttons', () => {
     render(<AdminHeader />);
-    // The settings button is just an icon, so we find it by its role
     const buttons = screen.getAllByRole('button');
-    expect(buttons.length).toBe(2);
+    expect(buttons.length).toBe(2); // Settings and Logout
     expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
   });
 
-  it('removes admin token and redirects to login page on logout', () => {
-    const removeItemSpy = jest.spyOn(Storage.prototype, 'removeItem');
+  it('removes admin token and redirects to login page on logout', async () => {
+    // Mock window.location.href
+    delete window.location;
+    const locationMock = { href: '' };
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: locationMock,
+    });
+
     render(<AdminHeader />);
     const logoutButton = screen.getByRole('button', { name: /logout/i });
     
     fireEvent.click(logoutButton);
     
-    // Verify that the token is removed from localStorage
-    expect(removeItemSpy).toHaveBeenCalledWith('admin-token');
-    // Verify that the page redirects
-    expect(window.location.href).toBe('/admin/login');
+    // Wait for the component to update and trigger the redirect
+    await waitFor(() => {
+      expect(localStorage.removeItem).toHaveBeenCalledWith('admin-token');
+    });
     
-    removeItemSpy.mockRestore();
+    await waitFor(() => {
+      expect(window.location.href).toBe('/admin/login');
+    });
   });
 });

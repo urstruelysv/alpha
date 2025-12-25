@@ -29,29 +29,43 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  const { percentage, days, hours, minutes } = body as {
+  const {
+    active,
+    percentage,
+    days,
+    hours,
+    minutes,
+    bannerText,
+  } = body as {
+    active?: boolean;
     percentage?: number;
     days?: number;
     hours?: number;
     minutes?: number;
+    bannerText?: string;
   };
 
   if (
+    typeof active !== 'boolean' ||
     typeof percentage !== 'number' ||
     typeof days !== 'number' ||
     typeof hours !== 'number' ||
-    typeof minutes !== 'number'
+    typeof minutes !== 'number' ||
+    typeof bannerText !== 'string'
   ) {
     return NextResponse.json(
-      { error: 'percentage, days, hours, and minutes must all be numbers' },
+      { error: 'active, percentage, duration, and bannerText must be provided and be of the correct type' },
       { status: 400 },
     );
   }
 
-  const config = { percentage, days, hours, minutes };
+  const now = new Date();
+  const durationInMs = (days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60) * 1000;
+  const endTime = new Date(now.getTime() + durationInMs).toISOString();
+
+  const config = { active, percentage, endTime, bannerText };
   await saveDiscountConfig(config);
 
   return NextResponse.json(config);
 }
-
 

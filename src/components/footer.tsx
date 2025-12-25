@@ -5,12 +5,11 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import SocialIcons from './social-icons';
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Packages', href: '#packages' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 export default function Footer() {

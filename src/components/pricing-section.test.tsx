@@ -1,170 +1,87 @@
-'use client';
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import PricingSection from './pricing-section';
+import '@testing-library/jest-dom';
 
-import { motion } from 'framer-motion';
-import { CheckCircle, Dumbbell, Calendar, Crown, User } from 'lucide-react';
+// Mock framer-motion
+jest.mock('framer-motion', () => {
+  const actual = jest.requireActual('framer-motion');
+  const motion = {
+    div: ({ children, ...props }) => <div {...props}>{children}</div>,
+    h2: ({ children, ...props }) => <h2 {...props}>{children}</h2>,
+    p: ({ children, ...props }) => <p {...props}>{children}</p>,
+  };
+  const proxy = new Proxy(motion, {
+    get: (target, prop) => {
+      if (prop in target) return target[prop as keyof typeof motion];
+      const Element = prop as React.ElementType;
+      return ({ children, ...props }) => <Element {...props}>{children}</Element>;
+    },
+  });
+  return { ...actual, motion: proxy };
+});
 
-const membershipPlans = [
-  {
-    name: 'Monthly',
-    price: '₹1,500',
-    icon: Calendar,
-    line: 'For people testing the routine',
-    features: [
-      'Full access to Alpha Fitness gym floor',
-      'Basic guidance from in-house trainers',
-      'Standard workout structure',
-    ],
-  },
-  {
-    name: '3 Months',
-    price: '₹3,500',
-    icon: Dumbbell,
-    line: 'Where consistency actually starts',
-    features: [
-      'Unlimited gym access',
-      'Form correction & exercise guidance',
-      'Progress-based workout changes',
-    ],
-  },
-  {
-    name: '6 Months',
-    price: '₹6,999',
-    icon: Dumbbell,
-    line: 'Train seriously. See visible change.',
-    features: [
-      'Unlimited gym access',
-      'Strength & fat-loss focused routines',
-      'Routine upgrades as your body adapts',
-    ],
-  },
-  {
-    name: '12 Months',
-    price: '₹13,999',
-    icon: Crown,
-    popular: true,
-    line: 'Built for people who don’t quit',
-    features: [
-      'Unlimited gym access all year',
-      'Long-term transformation structure',
-      '1 Month Personal Training FREE',
-      'Priority trainer attention',
-    ],
-  },
-];
+// Mock fetch API
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve([
+      { id: '1', name: 'Monthly', price: '1500', line: 'Test line 1', features: ['Feature 1'], popular: false },
+      { id: '2', name: '3 Months', price: '3500', line: 'Test line 2', features: ['Feature 2'], popular: true },
+    ]),
+  })
+) as jest.Mock;
 
-export default function PricingSection() {
-  return (
-    <section id="pricing" className="bg-zinc-950 py-16 px-4 sm:px-6">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-3xl mx-auto text-center mb-14"
-      >
-        <p className="text-sm uppercase tracking-widest text-purple-400 mb-2">
-          Alpha Fitness, Shadnagar
-        </p>
+describe('PricingSection', () => {
+  beforeEach(() => {
+    (global.fetch as jest.Mock).mockClear();
+  });
 
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Train Properly. Or Don’t Train At All.
-        </h2>
+  it('renders loading state initially, then fetches and renders plans', async () => {
+    render(<PricingSection />);
 
-        <p className="text-zinc-400 text-base">
-          Alpha Fitness is for people who want structure, discipline,
-          and long-term results — not shortcuts or timepass workouts.
-        </p>
-      </motion.div>
+    // It should show a loading state first
+    expect(screen.getByText(/Loading pricing.../i)).toBeInTheDocument();
 
-      {/* Membership Cards */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {membershipPlans.map((plan, i) => {
-          const Icon = plan.icon;
+    // Then, wait for the plans to be rendered
+    await waitFor(() => {
+      expect(screen.getByText('Monthly')).toBeInTheDocument();
+      expect(screen.getByText('₹1500')).toBeInTheDocument();
+    });
 
-          return (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06 }}
-              viewport={{ once: true }}
-              className={`relative rounded-xl border p-6 bg-zinc-900
-                ${plan.popular ? 'border-purple-500' : 'border-zinc-800'}
-              `}
-            >
-              {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  MOST COMMITTED MEMBERS CHOOSE THIS
-                </span>
-              )}
+    expect(screen.getByText('3 Months')).toBeInTheDocument();
+    expect(screen.getByText('₹3500')).toBeInTheDocument();
+    
+    // The loading text should be gone
+    expect(screen.queryByText(/Loading pricing.../i)).not.toBeInTheDocument();
+  });
 
-              <Icon className="w-6 h-6 text-purple-400 mb-4" />
+  it('highlights the popular plan', async () => {
+    render(<PricingSection />);
 
-              <h3 className="text-xl font-semibold text-white">
-                {plan.name}
-              </h3>
+    await waitFor(() => {
+      expect(screen.getByText('MOST POPULAR')).toBeInTheDocument();
+    });
+  });
 
-              <p className="text-sm text-zinc-400 mt-1">
-                {plan.line}
-              </p>
+  it('renders the personal training section', async () => {
+    render(<PricingSection />);
+    // Wait for the main content to load
+    await waitFor(() => {
+      expect(screen.getByText('One-on-One Personal Training')).toBeInTheDocument();
+    });
+  });
 
-              <p className="text-3xl font-bold text-white mt-4">
-                {plan.price}
-              </p>
+  it('displays an error message if fetching plans fails', async () => {
+    // Override the fetch mock for this specific test
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({ ok: false, status: 500, statusText: 'Internal Server Error' })
+    );
 
-              <div className="mt-6 space-y-3">
-                {plan.features.map((feature) => (
-                  <div key={feature} className="flex gap-2">
-                    <CheckCircle className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                    <span className="text-sm text-zinc-300">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
+    render(<PricingSection />);
 
-              <button
-                className={`mt-8 w-full rounded-lg py-3 font-medium transition
-                  ${
-                    plan.popular
-                      ? 'bg-purple-500 text-white hover:bg-purple-600'
-                      : 'bg-zinc-800 text-white hover:bg-zinc-700'
-                  }`}
-              >
-                Start Training at Alpha
-              </button>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Personal Training */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto mt-20 text-center"
-      >
-        <User className="w-8 h-8 text-purple-400 mx-auto mb-4" />
-
-        <h3 className="text-2xl font-bold text-white mb-3">
-          One-on-One Personal Training
-        </h3>
-
-        <p className="text-zinc-400 mb-4">
-          For people who want focused attention, faster progress,
-          and zero guesswork inside the gym.
-        </p>
-
-        <p className="text-sm text-zinc-500 mb-6">
-          Pricing is discussed after understanding your body,
-          goals, and availability.
-        </p>
-
-        <button className="bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-3 rounded-lg font-medium transition">
-          Talk to a Trainer
-        </button>
-      </motion.div>
-    </section>
-  );
-}
+    await waitFor(() => {
+      expect(screen.getByText(/Error: Failed to fetch plans/i)).toBeInTheDocument();
+    });
+  });
+});

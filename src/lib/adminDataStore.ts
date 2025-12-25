@@ -32,18 +32,18 @@ async function writeJsonFile<T extends JsonValue>(fileName: string, data: T): Pr
 }
 
 export type DiscountConfig = {
+  active: boolean;
   percentage: number;
-  days: number;
-  hours: number;
-  minutes: number;
+  endTime: string | null; // ISO 8601 format
+  bannerText: string;
 };
 
 export async function getDiscountConfig(): Promise<DiscountConfig> {
   return readJsonFile<DiscountConfig>('discount.json', {
-    percentage: 50,
-    days: 2,
-    hours: 14,
-    minutes: 32,
+    active: false,
+    percentage: 10,
+    endTime: null,
+    bannerText: '{percentage}% OFF on all annual memberships!',
   });
 }
 
@@ -107,6 +107,10 @@ export type Package = {
   description?: string;
   note?: string;
   order: number;
+  line?: string;
+  features?: string[];
+  popular?: boolean;
+  icon?: string;
 };
 
 export async function getPackages(): Promise<Package[]> {

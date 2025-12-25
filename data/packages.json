@@ -1,46 +1,81 @@
 [
   {
     "id": "1",
-    "name": "Monthly",
-    "price": "₹1,200",
+    "name": "Monthly Membership",
+    "price": "₹1,500",
     "type": "membership",
     "order": 1,
+    "line": "For people testing the routine",
+    "features": [
+      "Feel at home with full use of all Alpha Fitness facilities.",
+      "Our friendly in-house trainers are here to show you the ropes.",
+      "Simple, effective workout structures to take the guesswork out of your session."
+    ],
+    "popular": false,
+    "icon": "Calendar",
     "description": "",
     "note": ""
   },
   {
     "id": "2",
-    "name": "3 Months",
+    "name": "3-Month Membership",
     "price": "₹3,500",
     "type": "membership",
     "order": 2,
-    "description": "",
-    "note": ""
+    "line": "Where consistency actually starts",
+    "features": [
+      "Unlimited gym access",
+      "Form correction & exercise guidance",
+      "Progress-based workout changes"
+    ],
+    "popular": true,
+    "icon": "Dumbbell"
   },
   {
     "id": "3",
-    "name": "6 Months",
+    "name": "6-Month Membership",
     "price": "₹6,999",
     "type": "membership",
     "order": 3,
-    "description": "",
-    "note": ""
+    "line": "Train seriously. See visible change.",
+    "features": [
+      "Unlimited gym access",
+      "Strength & fat-loss focused routines",
+      "Routine upgrades as your body adapts"
+    ],
+    "popular": false,
+    "icon": "Dumbbell"
   },
   {
     "id": "4",
-    "name": "12 Months",
+    "name": "Annual Membership",
     "price": "₹13,999",
     "type": "membership",
     "order": 4,
-    "description": "",
-    "note": ""
+    "line": "Built for people who don’t quit",
+    "features": [
+      "Unlimited gym access all year",
+      "Long-term transformation structure",
+      "1 Month Personal Training FREE",
+      "Priority trainer attention"
+    ],
+    "popular": true,
+    "icon": "Crown"
   },
   {
     "id": "5",
     "name": "One-on-One Coaching",
-    "price": "Customized programs for faster, focused results",
+    "price": "Customized",
     "type": "personal-training",
-    "note": "Pricing on consultation",
-    "order": 5
+    "order": 5,
+    "line": "For people who want focused attention",
+    "features": [
+      "Personalized workout plan",
+      "Nutrition guidance",
+      "Weekly check-ins"
+    ],
+    "popular": false,
+    "note": "Pricing upon consultation.",
+    "icon": "User"
   }
 ]

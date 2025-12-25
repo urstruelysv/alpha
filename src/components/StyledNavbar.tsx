@@ -75,14 +75,13 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
   
   export default function StyledNavbar() {
     const navItems = [
-      { name: 'Home', link: '#home' },
-      { name: 'About', link: '#about' },
-      { name: 'Services', link: '#services' },
-      { name: 'Packages', link: '#packages' },
-      { name: 'Gallery', link: '#gallery' },
-      { name: 'Community', link: '#community' },
-      { name: 'FAQ', link: '#faq' },
-      { name: 'Contact', link: '#contact' },
+      { name: 'Home', link: '/' },
+      { name: 'Services', link: '/#services' },
+      { name: 'Pricing', link: '/#pricing' },
+      { name: 'Gallery', link: '/gallery' },
+      { name: 'Community', link: '/#community' },
+      { name: 'FAQ', link: '/#faq' },
+      { name: 'Contact', link: '/#contact' },
     ];
   
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -136,14 +135,14 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
         </header>
         <MobileNavMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu}>
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={closeMobileMenu}
                 className="text-2xl font-oswald text-white/80 hover:text-bright-purple transition-colors"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className="flex flex-col gap-4 pt-8 mt-8 border-t border-bright-purple/20 w-full max-w-xs">
               <NavbarButton

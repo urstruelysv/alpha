@@ -1,82 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-type DiscountConfig = {
-  percentage: number;
-  days: number;
-  hours: number;
-  minutes: number;
+const reveal = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.8,
+      ease: 'easeOut',
+    },
+  }),
 };
 
 export default function HeroSection() {
-  const [discount, setDiscount] = useState<DiscountConfig | null>(null);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  // Load discount from backend
-  useEffect(() => {
-    const loadDiscount = async () => {
-      try {
-        const res = await fetch('/api/discount', { cache: 'no-store' });
-        if (!res.ok) {
-          throw new Error('Failed to load discount');
-        }
-        const data = (await res.json()) as DiscountConfig;
-        setDiscount(data);
-        setTimeLeft({
-          days: data.days,
-          hours: data.hours,
-          minutes: data.minutes,
-          seconds: 0,
-        });
-      } catch (err) {
-        console.error('Failed to load discount config', err);
-        // Fallback default if API fails
-        setDiscount({ percentage: 50, days: 2, hours: 14, minutes: 32 });
-        setTimeLeft({ days: 2, hours: 14, minutes: 32, seconds: 0 });
-      }
-    };
-
-    loadDiscount();
-  }, []);
-
-  // Countdown timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        let { days, hours, minutes, seconds } = prev;
-        seconds -= 1;
-
-        if (seconds < 0) {
-          seconds = 59;
-          minutes -= 1;
-        }
-        if (minutes < 0) {
-          minutes = 59;
-          hours -= 1;
-        }
-        if (hours < 0) {
-          hours = 23;
-          days -= 1;
-        }
-        if (days < 0) {
-          days = 0;
-          hours = 0;
-          minutes = 0;
-          seconds = 0;
-        }
-
-        return { days, hours, minutes, seconds };
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
+  const scrollToPricing = () => {
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-        <motion.section
+    <motion.section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       initial={{ opacity: 0 }}
@@ -95,59 +41,81 @@ export default function HeroSection() {
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black" />
 
-      {/* Discount Badge */}
-      {discount && (
-        <div className="absolute top-24 right-4 md:right-8 z-20 bg-bright-purple/20 border border-bright-purple rounded-lg p-4 backdrop-blur-sm animate-scale-in card-hover">
-          <div className="text-xs font-oswald text-bright-purple uppercase tracking-wider mb-2">
-            Limited Offer
-          </div>
-          <div className="text-2xl font-oswald font-bold text-white mb-2">
-            {discount.percentage}% OFF
-          </div>
-          <div className="text-xs text-white/70">
-            {String(timeLeft.days).padStart(2, '0')}:
-            {String(timeLeft.hours).padStart(2, '0')}:
-            {String(timeLeft.minutes).padStart(2, '0')}:
-            {String(timeLeft.seconds).padStart(2, '0')}
-          </div>
-        </div>
-      )}
+      {/* Animated Gradient Curves */}
+      <motion.svg
+        viewBox="0 0 1440 900"
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+      >
+        <motion.path
+          d="M-200 350 C300 50 700 600 1200 350 C1500 200 1700 300 1900 200"
+          stroke="url(#purpleGradient)"
+          strokeWidth="130"
+          fill="none"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 2, ease: 'easeInOut' }}
+        />
+        <defs>
+          <linearGradient id="purpleGradient" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#a855f7" stopOpacity="0" />
+            <stop offset="50%" stopColor="#a855f7" stopOpacity="1" />
+            <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </motion.svg>
 
       {/* Content */}
-      <div className="relative z-10 container-custom text-center">
-        <div className="animate-slide-up">
-          <h1 className="heading-xl mb-6 text-white">
-            Alpha Fitness
-            <br />
-            <span className="text-bright-purple">Shadnagar's biggest premium Gym</span>
-          </h1>
+      <div className="relative z-10 text-center px-6 max-w-4xl">
+        <motion.p
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="font-cult-body text-sm tracking-[0.35em] text-white/80 mb-4"
+        >
+          WE ARE
+        </motion.p>
 
-          <p className="text-body text-white/70 max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            Advanced equipment, expert trainers, a community that transforms. Join thousands of members achieving their fitness goals.
-          </p>
+        <motion.h1
+          custom={2}
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="font-cult text-7xl md:text-9xl font-bold text-white lowercase mb-6"
+        >
+          alpha
+        </motion.h1>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <button className="btn-primary flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-bright-purple/50">
-              Start Free Trial
-              <ChevronRight size={18} />
-            </button>
-            <button className="btn-secondary">View Packages</button>
-          </div>
+        <motion.p
+          custom={3}
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="font-cult-body text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          A fitness movement in <span className="font-semibold">Shadnagar</span>
+          <br />
+          worth breaking a sweat for
+        </motion.p>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '300ms' }}>
-            <div className="group">
-              <div className="text-3xl md:text-4xl font-oswald font-bold text-bright-purple group-hover:scale-110 transition-transform duration-300">500+</div>
-              <div className="text-sm text-white/60">Active Members</div>
-            </div>
-            <div className="group">
-              <div className="text-3xl md:text-4xl font-oswald font-bold text-bright-purple group-hover:scale-110 transition-transform duration-300">10+</div>
-              <div className="text-sm text-white/60">Expert Trainers</div>
-            </div>
-          
-          </div>
-        </div>
+        {/* CTA */}
+        <motion.button
+          custom={4}
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={scrollToPricing}
+          className="px-10 py-4 bg-white text-black font-cult-body text-sm font-semibold rounded-md tracking-wide shadow-xl hover:bg-white/90 transition"
+        >
+          EXPLORE MEMBERSHIPS
+        </motion.button>
       </div>
 
       {/* Scroll Indicator */}
