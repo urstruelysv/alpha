@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const testimonials = [
@@ -79,14 +80,16 @@ export default function TestimonialsSection() {
                 ))}
               </div>
               <p className="text-lg md:text-xl text-white/80 mb-6 italic">
-                "{testimonials[current].text}"
+                &ldquo;{testimonials[current].text}&rdquo;
               </p>
 
               {/* Author */}
               <div className="flex items-center justify-center gap-4">
-                <img
+                <Image
                   src={testimonials[current].image || "/placeholder.svg"}
                   alt={testimonials[current].name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div className="text-left">

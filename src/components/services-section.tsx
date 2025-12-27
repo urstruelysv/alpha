@@ -140,7 +140,7 @@ export default function ServicesSection() {
         </div>
 
         <div className="mt-8 md:mt-10 text-center text-xs md:text-sm text-white/60 px-4">
-          Need something custom? Drop a message and we'll build a plan around your schedule.
+          Need something custom? Drop a message and we&apos;ll build a plan around your schedule.
         </div>
       </div>
     </section>

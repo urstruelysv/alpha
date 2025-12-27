@@ -136,7 +136,7 @@ export default function DiscountTab() {
           days: 0, hours: 0, minutes: 0,
         }),
       });
-    } catch (err) {
+    } catch {
       setError('Failed to update status.');
     }
   };
@@ -189,7 +189,7 @@ export default function DiscountTab() {
 
           <div>
             <label className="block text-white font-oswald font-semibold mb-2">Set New Timer Duration</label>
-            <p className="text-sm text-white/60 mb-2">Set a duration and click "Save Changes" to start a new countdown. This will override the current timer.</p>
+            <p className="text-sm text-white/60 mb-2">Set a duration and click &quot;Save Changes&quot; to start a new countdown. This will override the current timer.</p>
             <div className="grid grid-cols-3 gap-4">
               {(Object.keys(duration) as Array<keyof Duration>).map((unit) => (
                 <div key={unit}>

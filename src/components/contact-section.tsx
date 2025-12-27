@@ -120,7 +120,7 @@ export default function ContactSection() {
         <div className="text-center mb-16">
           <h2 className="heading-lg text-white mb-4">Get In Touch</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Have questions? We'd love to hear from you. Send us a message!
+            Have questions? We&apos;d love to hear from you. Send us a message!
           </p>
         </div>
 
@@ -281,7 +281,7 @@ export default function ContactSection() {
 
               {submitSuccess && (
                 <div className="p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center">
-                  Thank you! We'll get back to you soon.
+                  Thank you! We&apos;ll get back to you soon.
                 </div>
               )}
             </form>

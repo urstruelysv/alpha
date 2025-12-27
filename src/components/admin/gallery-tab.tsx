@@ -1,6 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Upload, Trash2 } from 'lucide-react';
 
 type GalleryImage = {
@@ -134,10 +133,11 @@ export default function GalleryTab() {
               key={item.id}
               className="relative group rounded-lg overflow-hidden bg-deep-purple/20 border border-bright-purple/20 aspect-square"
             >
-              <img
+              <Image
                 src={item.url}
                 alt={item.alt || 'Gallery image'}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <button

@@ -15,7 +15,7 @@ describe('useAudioPlayer Hook', () => {
         audio.pause = mockPause;
         audioInstance = audio;
         return audio;
-    }) as any;
+    }) as unknown as typeof HTMLAudioElement;
   });
 
   beforeEach(() => {

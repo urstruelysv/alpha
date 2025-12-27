@@ -54,7 +54,7 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
     </button>
   );
   
-  const MobileNavMenu = ({ isOpen, children, onClose }: { isOpen: boolean, children: React.ReactNode, onClose: () => void }) => (
+  const MobileNavMenu = ({ isOpen, children }: { isOpen: boolean, children: React.ReactNode }) => (
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -128,12 +128,11 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
                     >
                       Login
                     </NavbarButton>
-                    <NavbarButton variant="primary">Start Free Trial</NavbarButton>
                 </div>
                 <MobileNavToggle isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
             </div>
         </header>
-        <MobileNavMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu}>
+        <MobileNavMenu isOpen={isMobileMenuOpen}>
             {navItems.map((item, idx) => (
               <Link
                 key={`mobile-link-${idx}`}
@@ -154,13 +153,6 @@ const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean, onClick: () => 
                 className="w-full"
               >
                 Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={closeMobileMenu}
-                variant="primary"
-                className="w-full"
-              >
-                Start Free Trial
               </NavbarButton>
             </div>
         </MobileNavMenu>

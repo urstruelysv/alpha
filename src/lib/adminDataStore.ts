@@ -11,7 +11,11 @@ async function ensureDataDir() {
   }
 }
 
-type JsonValue = any;
+interface JsonObject {
+  [key: string]: JsonValue;
+}
+type JsonArray = JsonValue[];
+type JsonValue = string | number | boolean | null | JsonObject | JsonArray;
 
 async function readJsonFile<T extends JsonValue>(fileName: string, fallback: T): Promise<T> {
   await ensureDataDir();

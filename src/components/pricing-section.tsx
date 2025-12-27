@@ -14,6 +14,7 @@ interface Package {
   features?: string[];
   popular?: boolean;
   icon?: string;
+  type?: string;
 }
 
 // Map string names to actual Lucide components
@@ -149,12 +150,11 @@ export default function PricingSection() {
           Alpha Fitness, Shadnagar
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Train Properly. Or Don’t Train At All.
+          Choose Your Path to Fitness
         </h2>
         <p className="text-zinc-400 text-base">
-          Alpha Fitness is for people who want structure, discipline,
-          and long-term results — not shortcuts or timepass workouts.
-        </p>
+          Flexible membership plans designed to fit your fitness goals and lifestyle.
+          </p>
       </motion.div>
 
       {renderContent()}

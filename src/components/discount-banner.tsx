@@ -11,7 +11,6 @@ type DiscountConfig = {
   bannerText: string;
 };
 
-const pluralize = (count: number, singular: string) => (count === 1 ? singular : `${singular}s`);
 
 const formatRemainingTime = (endTime: string | null): string => {
   if (!endTime) return '';

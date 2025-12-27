@@ -1,6 +1,7 @@
 'use client';
 
-import { Users, Calendar, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Users, Calendar } from 'lucide-react';
 
 const communityEvents = [
   {
@@ -48,10 +49,11 @@ export default function CommunitySection() {
             >
               {/* Image */}
               <div className="relative h-40 overflow-hidden">
-                <img
+                <Image
                   src={event.image || "/placeholder.svg"}
                   alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
               </div>

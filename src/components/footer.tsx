@@ -26,7 +26,7 @@ export default function Footer() {
               <span className="font-oswald font-bold text-lg text-white">Alpha Fitness</span>
             </Link>
             <p className="text-white/60 text-sm mb-6">
-              Shadnagar's largest and most advanced fitness center. Join our community and transform your life.
+              Shadnagar&apos;s largest and most advanced fitness center. Join our community and transform your life.
             </p>
             <SocialIcons />
           </div>

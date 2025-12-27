@@ -194,7 +194,9 @@ function EditForm({ pkg, onSave, onCancel }: { pkg: Partial<Package>, onSave: (f
   const [formData, setFormData] = useState(pkg);
 
   const handleSubmit = () => {
-    const featuresArray = typeof formData.features === 'string' ? formData.features.split('\n').filter(f => f.trim() !== '') : formData.features;
+    const featuresArray = Array.isArray(formData.features) 
+      ? formData.features.filter(f => f.trim() !== '') 
+      : [];
     onSave({ ...formData, features: featuresArray });
   };
 
@@ -218,7 +220,7 @@ function EditForm({ pkg, onSave, onCancel }: { pkg: Partial<Package>, onSave: (f
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-white/70 text-sm mb-2">Type</label>
-            <select value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value as any })} className="w-full px-4 py-2 bg-deep-purple/40 border border-bright-purple/30 rounded-lg text-white">
+            <select value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value as Package['type'] })} className="w-full px-4 py-2 bg-deep-purple/40 border border-bright-purple/30 rounded-lg text-white">
               <option value="membership">Membership</option>
               <option value="personal-training">Personal Training</option>
             </select>

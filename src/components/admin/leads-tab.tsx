@@ -45,7 +45,7 @@ export default function LeadsTab() {
   const exportCSV = () => {
     if (leads.length === 0) return;
 
-    const escapeCsvField = (field: any) => {
+    const escapeCsvField = (field: unknown) => {
       const stringField = String(field);
       // Escape double quotes by doubling them
       const escaped = stringField.replace(/"/g, '""');

@@ -9,9 +9,11 @@ jest.mock('framer-motion', () => {
   const actual = jest.requireActual('framer-motion');
   
   const motion = (Component: React.ElementType) => {
-    const MockComponent = ({ children, variants, initial, animate, whileInView, viewport, custom, ...props }: any) => (
-      <Component {...props}>{children}</Component>
-    );
+    const MockComponent = ({ children, ...props }: Record<string, unknown> & { children?: React.ReactNode }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { variants, initial, animate, whileInView, viewport, custom, ...restProps } = props;
+      return <Component {...restProps}>{children}</Component>;
+    };
     MockComponent.displayName = `MockMotion${Component}`;
     return MockComponent;
   };

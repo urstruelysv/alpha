@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Heart } from 'lucide-react';
 
 const testimonials = [
@@ -24,9 +25,10 @@ export default function WomensSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Image */}
           <div className="relative h-96 rounded-lg overflow-hidden">
-            <img
+            <Image
               src="/placeholder.svg?height=400&width=500"
               alt="Women's fitness program"
+              fill
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-deep-purple/40 to-transparent" />
@@ -37,7 +39,7 @@ export default function WomensSection() {
             <div className="flex items-center gap-2 mb-4">
               <Heart className="w-5 h-5 text-bright-purple" />
               <span className="text-bright-purple font-oswald text-sm uppercase tracking-wider">
-                Women's Empowerment
+                Women&apos;s Empowerment
               </span>
             </div>
             <h2 className="heading-lg text-white mb-6">
@@ -68,7 +70,7 @@ export default function WomensSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="text-center">
-                <p className="text-white/70 mb-4 italic">"{testimonial.quote}"</p>
+                <p className="text-white/70 mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
                 <p className="text-bright-purple font-oswald font-semibold">{testimonial.name}</p>
               </div>
             ))}

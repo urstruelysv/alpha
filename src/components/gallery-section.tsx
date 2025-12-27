@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 
 type GalleryImage = {
@@ -67,10 +68,11 @@ export default function GallerySection() {
                   index % 6 === 1 || index % 6 === 5 ? 'md:col-span-2' : ''
                 } ${index % 6 === 2 ? 'md:row-span-2' : ''}`}
               >
-                <img
+                <Image
                   src={item.url || '/placeholder.svg'}
                   alt={item.alt || 'Gallery image'}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-end p-4">
                   <h3 className="text-white font-oswald font-semibold">
@@ -92,11 +94,14 @@ export default function GallerySection() {
             >
               <X className="w-6 h-6 text-black" />
             </button>
-            <img
-              src={selected.url || '/placeholder.svg'}
-              alt={selected.alt || 'Gallery'}
-              className="max-w-4xl max-h-[80vh] object-contain rounded-lg"
-            />
+            <div className="relative max-w-4xl max-h-[80vh] w-full h-full">
+              <Image
+                src={selected.url || '/placeholder.svg'}
+                alt={selected.alt || 'Gallery'}
+                fill
+                className="object-contain rounded-lg"
+              />
+            </div>
           </div>
         )}
       </div>

@@ -9,22 +9,31 @@ jest.mock('@/hooks/useAudioPlayer', () => ({
 
 // Mock framer-motion
 jest.mock('framer-motion', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const React = require('react');
     const { forwardRef } = React;
     
+    type MotionProps = Record<string, unknown> & { children?: React.ReactNode };
+    
     // Filter out framer-motion specific props
-    const filterMotionProps = (props: any) => {
+    const filterMotionProps = (props: MotionProps) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { whileHover, whileTap, animate, transition, exit, initial, ...rest } = props;
         return rest;
     };
     
+    const MotionDiv = forwardRef(function MotionDiv(props: MotionProps, ref: React.Ref<HTMLDivElement>) { return <div ref={ref} {...filterMotionProps(props)} />; });
+    const MotionButton = forwardRef(function MotionButton(props: MotionProps, ref: React.Ref<HTMLButtonElement>) { return <button ref={ref} {...filterMotionProps(props)} />; });
+    const MotionH1 = forwardRef(function MotionH1(props: MotionProps, ref: React.Ref<HTMLHeadingElement>) { return <h1 ref={ref} {...filterMotionProps(props)} />; });
+    const MotionP = forwardRef(function MotionP(props: MotionProps, ref: React.Ref<HTMLParagraphElement>) { return <p ref={ref} {...filterMotionProps(props)} />; });
+    const MotionSpan = forwardRef(function MotionSpan(props: MotionProps, ref: React.Ref<HTMLSpanElement>) { return <span ref={ref} {...filterMotionProps(props)} />; });
+    
     const motion = {
-        div: forwardRef((props: any, ref: any) => <div ref={ref} {...filterMotionProps(props)} />),
-        button: forwardRef((props: any, ref: any) => <button ref={ref} {...filterMotionProps(props)} />),
-        h1: forwardRef((props: any, ref: any) => <h1 ref={ref} {...filterMotionProps(props)} />),
-        p: forwardRef((props: any, ref: any) => <p ref={ref} {...filterMotionProps(props)} />),
-        span: forwardRef((props: any, ref: any) => <span ref={ref} {...filterMotionProps(props)} />),
-        img: forwardRef((props: any, ref: any) => <img ref={ref} {...filterMotionProps(props)} />),
+        div: MotionDiv,
+        button: MotionButton,
+        h1: MotionH1,
+        p: MotionP,
+        span: MotionSpan,
     };
     return {
         motion,

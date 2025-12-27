@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Award, Dumbbell } from 'lucide-react';
+import Image from 'next/image';
+import { Award } from 'lucide-react';
 
 type Trainer = {
   id: string;
@@ -62,10 +63,11 @@ export default function TrainersSection() {
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={trainer.imageUrl || '/placeholder.svg'}
                     alt={trainer.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 </div>

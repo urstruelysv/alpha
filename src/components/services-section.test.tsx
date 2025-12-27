@@ -2,28 +2,25 @@ import { render, screen } from '@testing-library/react';
 import ServicesSection from './services-section';
 
 // Mock the AnimatedCard component to remove animation classes that hide content
-jest.mock('./animated-card', () => ({ 
-  children, 
-  delay 
-}: { 
-  children: React.ReactNode; 
-  delay?: number;
-}) => <div>{children}</div>);
+jest.mock('./animated-card', () => {
+  const AnimatedCard = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
+  AnimatedCard.displayName = 'AnimatedCard';
+  return AnimatedCard;
+});
 
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: ({ src, alt, fill, className, sizes, ...props }: { 
+  default: function MockedImage({ src, alt, fill, className, ...props }: { 
     src: string; 
     alt: string; 
     fill?: boolean; 
     className?: string;
-    sizes?: string;
-    [key: string]: any;
-  }) => {
+    [key: string]: unknown;
+  }) {
     // When fill is true, Next.js Image uses absolute positioning
     // We'll render a regular img with appropriate styles
-    const imgProps: any = { 
+    const imgProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-testid'?: string } = { 
       src, 
       alt,
       'data-testid': 'next-image',
@@ -42,7 +39,7 @@ jest.mock('next/image', () => ({
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        ...props.style,
+        ...(props.style as React.CSSProperties),
       };
     }
     

@@ -2,7 +2,10 @@ import { render, screen } from '@testing-library/react';
 import Footer from './footer';
 
 // Mock the SocialIcons component to isolate the Footer component for testing
-jest.mock('./social-icons', () => () => <div data-testid="social-icons" />);
+jest.mock('./social-icons', () => {
+  function MockSocialIcons() { return <div data-testid="social-icons" />; }
+  return MockSocialIcons;
+});
 
 describe('Footer', () => {
   it('renders the company logo and name', () => {

@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Easing } from 'framer-motion';
 
 const reveal = {
   hidden: { opacity: 0, y: 40 },
@@ -11,7 +10,7 @@ const reveal = {
     transition: {
       delay: i * 0.15,
       duration: 0.8,
-      ease: 'easeOut',
+      ease: 'easeOut' as Easing,
     },
   }),
 };
@@ -129,3 +128,4 @@ export default function HeroSection() {
     </motion.section>
   );
 }
+

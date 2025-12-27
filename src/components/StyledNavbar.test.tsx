@@ -4,14 +4,18 @@ import { JSX, ClassAttributes, HTMLAttributes, Ref, ButtonHTMLAttributes } from 
 
 // Mock framer-motion for simpler testing, and next/link
 jest.mock('framer-motion', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const React = require('react');
     const { forwardRef } = React;
+    const MotionDiv = forwardRef(function MotionDiv(props: JSX.IntrinsicAttributes & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement> | undefined) { return <div ref={ref} {...props} />; });
+    const MotionButton = forwardRef(function MotionButton(props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>, ref: Ref<HTMLButtonElement> | undefined) { return <button ref={ref} {...props} />; });
+    function AnimatePresence({ children }: { children: React.ReactNode }) { return <>{children}</>; }
     return {
         motion: {
-            div: forwardRef((props: JSX.IntrinsicAttributes & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement> | undefined) => <div ref={ref} {...props} />),
-            button: forwardRef((props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>, ref: Ref<HTMLButtonElement> | undefined) => <button ref={ref} {...props} />),
+            div: MotionDiv,
+            button: MotionButton,
         },
-        AnimatePresence: ({ children }) => <>{children}</>,
+        AnimatePresence,
     };
 });
 
@@ -31,11 +35,9 @@ describe('StyledNavbar', () => {
     it('renders desktop action buttons', () => {
         render(<StyledNavbar />);
         const loginButtons = screen.getAllByRole('button', { name: 'Login' });
-        const trialButtons = screen.getAllByRole('button', { name: 'Start Free Trial' });
         
         // The first button instance is the one visible on desktop
         expect(loginButtons[0]).toBeInTheDocument();
-        expect(trialButtons[0]).toBeInTheDocument();
     });
 
     it('toggles the mobile menu on click', async () => {
