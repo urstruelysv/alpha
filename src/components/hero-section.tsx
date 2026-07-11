@@ -38,7 +38,7 @@ export default function HeroSection() {
       >
         <source src="/gym%20final.MP4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black" />
 
       {/* Animated Gradient Curves */}
       <motion.svg
@@ -107,10 +107,10 @@ export default function HeroSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToPricing}
-          className="px-10 py-4 bg-bright-purple text-white font-cult-body text-sm font-semibold rounded-md tracking-wide shadow-xl hover:bg-bright-purple/90 transition"
+          className="px-10 py-4 bg-bright-purple text-white font-cult-body text-sm font-semibold rounded-lg tracking-wide shadow-[0_20px_50px_rgba(168,85,247,0.4)] hover:shadow-[0_30px_60px_rgba(168,85,247,0.6)] hover:bg-bright-purple/90 transition-all duration-300"
         >
           START YOUR JOURNEY
         </motion.button>

@@ -76,11 +76,11 @@ export default function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06 }}
               viewport={{ once: true }}
-              className={`relative rounded-xl border p-6 bg-zinc-900 flex flex-col
+              className={`relative rounded-2xl border p-6 flex flex-col transition-all duration-300 hover:shadow-[0_25px_60px_rgba(168,85,247,0.2)]
                 ${
                   plan.popular
-                    ? 'border-purple-500'
-                    : 'border-zinc-800'
+                    ? 'bg-gradient-to-br from-purple-950 to-black border-bright-purple/60 shadow-[0_0_40px_rgba(168,85,247,0.2)]'
+                    : 'bg-gradient-to-br from-zinc-900/80 to-black border-bright-purple/20 hover:border-bright-purple/40'
                 }`}
             >
               {plan.popular && (

@@ -187,9 +187,9 @@ export default function ContactSection() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg bg-deep-purple/20 border ${
+                  className={`w-full px-4 py-3 rounded-lg bg-zinc-900/50 border ${
                     errors.name ? 'border-red-500' : 'border-bright-purple/30'
-                  } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple transition-colors`}
+                  } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple focus:ring-2 focus:ring-bright-purple/30 transition-all duration-300`}
                   placeholder="Your name"
                 />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -206,9 +206,9 @@ export default function ContactSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-deep-purple/20 border ${
+                    className={`w-full px-4 py-3 rounded-lg bg-zinc-900/50 border ${
                       errors.phone ? 'border-red-500' : 'border-bright-purple/30'
-                    } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple transition-colors`}
+                    } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple focus:ring-2 focus:ring-bright-purple/30 transition-all duration-300`}
                     placeholder="10-digit number"
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}

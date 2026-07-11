@@ -89,7 +89,7 @@ export default function ServicesSection() {
             return (
               <div
                 key={service.title}
-                className="group relative rounded-2xl border border-purple-500/20 bg-zinc-900/80 backdrop-blur transition-all duration-200 hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-[0_15px_60px_-25px_rgba(168,85,247,0.7)]"
+                className="group relative rounded-2xl border border-purple-500/20 bg-gradient-to-br from-zinc-900/90 to-black/80 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-bright-purple/50 hover:shadow-[0_25px_70px_rgba(168,85,247,0.35)]"
               >
                 <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-purple-500 via-sky-400 to-purple-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 

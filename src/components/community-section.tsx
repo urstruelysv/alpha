@@ -45,7 +45,7 @@ export default function CommunitySection() {
           {communityEvents.map((event, index) => (
             <div
               key={index}
-              className="group rounded-lg overflow-hidden bg-deep-purple/10 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
+              className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(168,85,247,0.2)]"
             >
               {/* Image */}
               <div className="relative h-40 overflow-hidden">
