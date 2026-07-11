@@ -47,13 +47,13 @@ export default function Home() {
       <DiscountBanner />
       <HeroSection />
       <ServicesSection />
-      <PricingSection />
       <WomensSection />
       <TrainersSection />
       <CommunitySection />
       <TestimonialsSection />
-      <FAQSection />
+      <PricingSection />
       <ContactSection />
+      <FAQSection />
       <Footer />
     </main>
   );
