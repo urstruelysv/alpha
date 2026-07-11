@@ -5,16 +5,16 @@ import { Heart } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Priya',
-    quote: 'Alpha Fitness transformed my confidence. The women-only programs made all the difference!',
+    name: 'Isha T.',
+    quote: 'I don\'t have to shrink myself here. Coaches see me as strong, not just "the girl in the gym".',
   },
   {
-    name: 'Anjali',
-    quote: 'Best decision ever. The trainers are supportive and the community is amazing.',
+    name: 'Deepa N.',
+    quote: 'Built real strength, real confidence. This program respects where you\'re starting from.',
   },
   {
-    name: 'Sneha',
-    quote: 'Finally found a gym where I feel comfortable and motivated to achieve my goals.',
+    name: 'Neha K.',
+    quote: 'Finally training without creepy stares or unwanted advice. Just smart programming and real results.',
   },
 ];
 
@@ -39,14 +39,14 @@ export default function WomensSection() {
             <div className="flex items-center gap-2 mb-4">
               <Heart className="w-5 h-5 text-bright-purple" />
               <span className="text-bright-purple font-oswald text-sm uppercase tracking-wider">
-                Women&apos;s Empowerment
+                Built for Women
               </span>
             </div>
             <h2 className="heading-lg text-white mb-6">
-              Dedicated Programs for Women
+              Space Where You Belong
             </h2>
             <p className="text-body text-white/70 mb-6">
-              Our women-only fitness programs are designed to create a supportive, judgment-free environment where you can achieve your fitness goals with confidence. From strength training to yoga and cardio classes, we have everything you need.
+              Dedicated hours. Female trainers. Programming designed for your body and goals—not copied from Instagram. You train serious here. No room for nonsense.
             </p>
 
             <div className="space-y-4 mb-8">

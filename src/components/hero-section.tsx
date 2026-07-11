@@ -72,9 +72,9 @@ export default function HeroSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="font-cult-body text-sm tracking-[0.35em] text-white/80 mb-4"
+          className="font-cult-body text-sm tracking-[0.35em] text-bright-purple mb-4 uppercase"
         >
-          WE ARE
+          FORGED IN
         </motion.p>
 
         <motion.h1
@@ -85,7 +85,7 @@ export default function HeroSection() {
           viewport={{ once: true }}
           className="font-cult text-7xl md:text-9xl font-bold text-white lowercase mb-6"
         >
-          alpha
+          Shadnagar
         </motion.h1>
 
         <motion.p
@@ -96,9 +96,8 @@ export default function HeroSection() {
           viewport={{ once: true }}
           className="font-cult-body text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          A fitness movement in <span className="font-semibold">Shadnagar</span>
-          <br />
-          worth breaking a sweat for
+          Where serious athletes come to transform.<br/>
+          No excuses. No egos. Just results.
         </motion.p>
 
         {/* CTA */}
@@ -111,9 +110,9 @@ export default function HeroSection() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToPricing}
-          className="px-10 py-4 bg-white text-black font-cult-body text-sm font-semibold rounded-md tracking-wide shadow-xl hover:bg-white/90 transition"
+          className="px-10 py-4 bg-bright-purple text-white font-cult-body text-sm font-semibold rounded-md tracking-wide shadow-xl hover:bg-bright-purple/90 transition"
         >
-          EXPLORE MEMBERSHIPS
+          START YOUR JOURNEY
         </motion.button>
       </div>
 
@@ -128,4 +127,3 @@ export default function HeroSection() {
     </motion.section>
   );
 }
-

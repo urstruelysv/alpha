@@ -118,9 +118,9 @@ export default function ContactSection() {
     <section id="contact" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Get In Touch</h2>
+          <h2 className="heading-lg text-white mb-4">Ready to Start?</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Have questions? We&apos;d love to hear from you. Send us a message!
+            Hit us up. First consultation is free. No commitment, just a real conversation about your goals.
           </p>
         </div>
 

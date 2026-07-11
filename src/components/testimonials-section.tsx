@@ -6,30 +6,30 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Rahul Verma',
-    role: 'Software Engineer',
-    text: 'Alpha Fitness completely transformed my fitness journey. The trainers are knowledgeable and the community is incredibly supportive!',
+    name: 'Arjun K.',
+    role: 'Built 15kg muscle in 4 months',
+    text: 'Tried a dozen gyms. Never found trainers who actually cared. Now I text my coach questions at 11 PM. He responds. That\'s the difference.',
     rating: 5,
     image: '/placeholder.svg?height=100&width=100',
   },
   {
-    name: 'Meera Singh',
-    role: 'Entrepreneur',
-    text: 'Best gym experience ever. The facilities are top-notch and the staff is always helpful. Highly recommended!',
+    name: 'Priya R.',
+    role: 'Went from zero to deadlifting 60kg',
+    text: 'Being a woman in a gym used to feel awkward. Not here. The coaches push you hard AND make you feel supported. No judgment, just gains.',
     rating: 5,
     image: '/placeholder.svg?height=100&width=100',
   },
   {
-    name: 'Aditya Patel',
-    role: 'Student',
-    text: 'I joined 6 months ago and the results speak for themselves. Great equipment, amazing trainers, and a welcoming community.',
+    name: 'Vikram S.',
+    role: 'Lost 18kg, kept the muscle',
+    text: 'Stopped doing bro-science, started following actual programming. Six months later, I look completely different. This place gets it.',
     rating: 5,
     image: '/placeholder.svg?height=100&width=100',
   },
   {
-    name: 'Kavya Sharma',
-    role: 'Marketing Manager',
-    text: 'The women-only programs gave me the confidence I needed. The trainers understand our needs perfectly.',
+    name: 'Sneha M.',
+    role: 'Completed her first strength competition',
+    text: 'Found a community of people who actually show up, who care about progress, who push without being toxic. This is home.',
     rating: 5,
     image: '/placeholder.svg?height=100&width=100',
   },
@@ -63,9 +63,9 @@ export default function TestimonialsSection() {
     <section className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Member Testimonials</h2>
+          <h2 className="heading-lg text-white mb-4">Real Results. Real People.</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Hear from our satisfied members
+            From zero experience to competition ready
           </p>
         </div>
 

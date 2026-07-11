@@ -53,7 +53,7 @@ export default function ServicesSection() {
         <div className="text-center mb-10 md:mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
             <Sparkles className="w-4 h-4" />
-            Built for real life, not just the gram
+            Coaching That Actually Works
           </div>
           <h2 className="text-2xl md:text-4xl font-bold text-white">
             Our Services

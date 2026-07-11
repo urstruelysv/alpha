@@ -45,9 +45,9 @@ export default function FAQSection() {
     <section id="faq" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Frequently Asked Questions</h2>
+          <h2 className="heading-lg text-white mb-4">Questions We Get Asked A Lot</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Find answers to common questions about Alpha Fitness
+            Straight answers. No fluff.
           </p>
         </div>
 

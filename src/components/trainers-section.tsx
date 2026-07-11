@@ -40,9 +40,9 @@ export default function TrainersSection() {
     <section id="trainers" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Meet Our Expert Trainers</h2>
+          <h2 className="heading-lg text-white mb-4">Your Coaches Are Real Athletes</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Certified professionals dedicated to helping you achieve your fitness goals
+            Not just certified. Actually strong. They get it because they do it.
           </p>
         </div>
 
