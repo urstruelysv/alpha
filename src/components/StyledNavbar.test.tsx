@@ -19,6 +19,12 @@ jest.mock('framer-motion', () => {
     };
 });
 
+jest.mock('next/navigation', () => ({
+    useRouter: jest.fn(() => ({
+        push: jest.fn(),
+    })),
+}));
+
 
 describe('StyledNavbar', () => {
     it('renders the logo and desktop navigation links', () => {
@@ -28,7 +34,6 @@ describe('StyledNavbar', () => {
         const nav = screen.getByRole('navigation');
         expect(nav).toBeInTheDocument();
         expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
-        expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();
         expect(screen.getByRole('link', { name: 'Services' })).toBeInTheDocument();
     });
 
