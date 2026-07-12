@@ -35,7 +35,7 @@ export default function CommunitySection() {
     <section id="community" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">You're Not Alone Here</h2>
+          <h2 className="heading-lg text-white mb-4">You&apos;re Not Alone Here</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
             Community events, challenges, and real people pushing together
           </p>
