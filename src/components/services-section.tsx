@@ -8,18 +8,22 @@ const services = [
   {
     title: 'Private Personal Training',
     vibe: '1:1 coaching, zero guesswork',
+    query: 'Indian personal trainer client gym',
   },
   {
     title: 'Strength & Performance',
     vibe: 'Train like an athlete',
+    query: 'Indian athlete strength training gym',
   },
   {
     title: 'Body Transformation',
     vibe: 'Results you can see',
+    query: 'gym dumbbell rack modern equipment',
   },
   {
     title: 'Nutrition Coaching',
     vibe: 'Real food, real results',
+    query: 'healthy Indian meal bowl fresh',
   },
 ];
 
@@ -46,9 +50,9 @@ export default function ServicesSection() {
           {services.map((service) => (
             <Card
               key={service.title}
-              className="rounded-3xl border-0 bg-[radial-gradient(circle_at_center,#1a1510,#0a0a0a)] min-h-[400px]"
+              className="rounded-3xl border-0 bg-[radial-gradient(circle_at_center,#1a1510,#0a0a0a)] min-h-[400px] flex flex-col"
             >
-              <CardHeader className="p-8">
+              <CardHeader className="p-8 pb-0">
                 <CardTitle className="text-2xl font-bold text-[#ececec]">
                   {service.title}
                 </CardTitle>
@@ -56,6 +60,15 @@ export default function ServicesSection() {
                   {service.vibe}
                 </CardDescription>
               </CardHeader>
+              <CardContent className="p-4 mt-auto">
+                <div className="relative aspect-video overflow-hidden rounded-xl [mask-image:radial-gradient(circle,black_60%,transparent_100%)]">
+                  <img
+                    src={`https://source.unsplash.com/featured/?${service.query}`}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
