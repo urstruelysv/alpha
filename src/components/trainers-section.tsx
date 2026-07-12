@@ -59,7 +59,7 @@ export default function TrainersSection() {
             {trainers.map((trainer) => (
               <div
                 key={trainer.id}
-                className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(168,85,247,0.2)]"
+                className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(166,124,61,0.2)]"
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">

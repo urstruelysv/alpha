@@ -51,7 +51,7 @@ export default function ServicesSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brass-500/30 bg-brass-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brass-200">
             <Sparkles className="w-4 h-4" />
             Coaching That Actually Works
           </div>
@@ -89,14 +89,14 @@ export default function ServicesSection() {
             return (
               <div
                 key={service.title}
-                className="group relative rounded-2xl border border-purple-500/20 bg-gradient-to-br from-zinc-900/90 to-black/80 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-bright-purple/50 hover:shadow-[0_25px_70px_rgba(168,85,247,0.35)]"
+                className="group relative rounded-2xl border border-brass-500/20 bg-gradient-to-br from-zinc-900/90 to-black/80 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-bright-purple/50 hover:shadow-[0_25px_70px_rgba(168,85,247,0.35)]"
               >
-                <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-purple-500 via-sky-400 to-purple-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-brass-500 via-sky-400 to-brass-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <div className="p-5 md:p-6 space-y-3 md:space-y-4">
                   <div className="flex items-start justify-between">
-                    <div className="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-xl bg-purple-500/15 border border-purple-500/30">
-                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-purple-300" />
+                    <div className="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-xl bg-brass-500/15 border border-brass-500/30">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-brass-300" />
                     </div>
                   </div>
 
@@ -104,7 +104,7 @@ export default function ServicesSection() {
                     <h3 className="text-base md:text-lg font-semibold text-white">
                       {service.title}
                     </h3>
-                    <p className="text-xs md:text-sm text-purple-100/80">
+                    <p className="text-xs md:text-sm text-brass-100/80">
                       {service.vibe}
                     </p>
                   </div>
@@ -119,14 +119,14 @@ export default function ServicesSection() {
                         key={perk}
                         className="flex items-center gap-2 text-xs md:text-sm text-white/80"
                       >
-                        <span className="inline-flex h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-gradient-to-br from-purple-400 to-sky-300 flex-shrink-0" />
+                        <span className="inline-flex h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-gradient-to-br from-brass-400 to-sky-300 flex-shrink-0" />
                         {perk}
                       </div>
                     ))}
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-1 md:pt-2">
-                    <span className="text-[10px] md:text-[11px] font-semibold text-purple-100 bg-purple-500/15 border border-purple-400/30 rounded-full px-2.5 md:px-3 py-0.5 md:py-1">
+                    <span className="text-[10px] md:text-[11px] font-semibold text-brass-100 bg-brass-500/15 border border-brass-400/30 rounded-full px-2.5 md:px-3 py-0.5 md:py-1">
                       Human coaching
                     </span>
                     <span className="text-[10px] md:text-[11px] font-semibold text-white/80 bg-white/5 border border-white/10 rounded-full px-2.5 md:px-3 py-0.5 md:py-1">

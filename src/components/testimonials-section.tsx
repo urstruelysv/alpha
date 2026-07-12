@@ -71,7 +71,7 @@ export default function TestimonialsSection() {
 
         {/* Carousel */}
         <div className="relative max-w-3xl mx-auto">
-          <div className="bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 rounded-2xl p-8 md:p-12 backdrop-blur shadow-[0_20px_60px_rgba(168,85,247,0.15)]">
+          <div className="bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 rounded-2xl p-8 md:p-12 backdrop-blur shadow-[0_20px_60px_rgba(166,124,61,0.15)]">
             {/* Testimonial Content */}
             <div className="text-center mb-6">
               <div className="flex justify-center gap-1 mb-4">

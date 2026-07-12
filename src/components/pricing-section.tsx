@@ -79,17 +79,17 @@ export default function PricingSection() {
               className={`relative rounded-2xl border p-6 flex flex-col transition-all duration-300 hover:shadow-[0_25px_60px_rgba(168,85,247,0.2)]
                 ${
                   plan.popular
-                    ? 'bg-gradient-to-br from-purple-950 to-black border-bright-purple/60 shadow-[0_0_40px_rgba(168,85,247,0.2)]'
+                    ? 'bg-gradient-to-br from-brass-950 to-black border-bright-purple/60 shadow-[0_0_40px_rgba(168,85,247,0.2)]'
                     : 'bg-gradient-to-br from-zinc-900/80 to-black border-bright-purple/20 hover:border-bright-purple/40'
                 }`}
             >
               {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brass-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   MOST POPULAR
                 </span>
               )}
 
-              <Icon className="w-6 h-6 text-purple-400 mb-4" />
+              <Icon className="w-6 h-6 text-brass-400 mb-4" />
 
               <h3 className="text-xl font-semibold text-white">
                 {plan.name}
@@ -108,7 +108,7 @@ export default function PricingSection() {
               <div className="mt-6 space-y-3 flex-grow">
                 {(plan.features || []).map((feature) => (
                   <div key={feature} className="flex gap-2">
-                    <CheckCircle className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-brass-400 flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-zinc-300">
                       {feature}
                     </span>
@@ -138,7 +138,7 @@ export default function PricingSection() {
       id="pricing"
       className="relative py-16 px-4 sm:px-6 bg-zinc-950"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brass-900/10 via-transparent to-transparent pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 18 }}
@@ -146,7 +146,7 @@ export default function PricingSection() {
         viewport={{ once: true }}
         className="max-w-3xl mx-auto text-center mb-14"
       >
-        <p className="text-sm uppercase tracking-widest text-purple-400 mb-2">
+        <p className="text-sm uppercase tracking-widest text-brass-400 mb-2">
           Alpha Fitness, Shadnagar
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -165,7 +165,7 @@ export default function PricingSection() {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto mt-20 text-center"
       >
-        <User className="w-8 h-8 text-purple-400 mx-auto mb-4" />
+        <User className="w-8 h-8 text-brass-400 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-white mb-3">
           One-on-One Personal Training
         </h3>

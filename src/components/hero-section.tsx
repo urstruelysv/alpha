@@ -58,9 +58,9 @@ export default function HeroSection() {
         />
         <defs>
           <linearGradient id="purpleGradient" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#a855f7" stopOpacity="0" />
-            <stop offset="50%" stopColor="#a855f7" stopOpacity="1" />
-            <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+            <stop offset="0%" stopColor="#a67c3d" stopOpacity="0" />
+            <stop offset="50%" stopColor="#a67c3d" stopOpacity="1" />
+            <stop offset="100%" stopColor="#a67c3d" stopOpacity="0" />
           </linearGradient>
         </defs>
       </motion.svg>

@@ -273,7 +273,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_15px_40px_rgba(168,85,247,0.3)] flex items-center justify-center gap-2"
+                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_15px_40px_rgba(166,124,61,0.3)] flex items-center justify-center gap-2"
               >
                 <Send className="w-5 h-5" />
                 {isSubmitting ? 'Sending...' : 'Send Message'}

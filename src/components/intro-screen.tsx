@@ -132,7 +132,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   </p>
                   <motion.button
                     onClick={startLoading}
-                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-purple-600/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_30px_rgba(124,58,237,0.3)] transition-all duration-300"
+                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-brass-600/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_30px_rgba(124,58,237,0.3)] transition-all duration-300"
                     whileHover={{
                       scale: 1.05,
                       boxShadow:
@@ -201,7 +201,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   animate={{ scale: [1, 1.1, 1], rotate: [0, 180, 360] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                 >
-                  <div className="w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-gradient-to-br from-bright-purple to-purple-900 shadow-[0_0_60px_rgba(124,58,237,0.8)]" />
+                  <div className="w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-gradient-to-br from-bright-purple to-brass-900 shadow-[0_0_60px_rgba(124,58,237,0.8)]" />
                   <motion.div
                     className="absolute inset-0 rounded-full bg-bright-purple"
                     animate={{
@@ -221,7 +221,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 </div>
 
                 <motion.span
-                  className="absolute bottom-20 right-8 sm:right-12 font-oswald text-3xl sm:text-6xl font-black bg-gradient-to-r from-bright-purple to-purple-400 bg-clip-text text-transparent"
+                  className="absolute bottom-20 right-8 sm:right-12 font-oswald text-3xl sm:text-6xl font-black bg-gradient-to-r from-bright-purple to-brass-400 bg-clip-text text-transparent"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 >

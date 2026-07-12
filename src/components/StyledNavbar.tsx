@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 
 const NavbarButton = ({ children, variant, className, ...props }: { children: React.ReactNode, variant: 'primary' | 'secondary', className?: string, onClick?: () => void }) => {
   const baseClasses = "px-4 py-2 font-oswald font-bold text-sm uppercase tracking-widest rounded-lg overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_20px_rgba(124,58,237,0.3)] transition-all duration-300";
-  const primaryClasses = "text-white bg-black border border-purple-600/60";
-  const secondaryClasses = "text-white bg-transparent border border-purple-600/60";
+  const primaryClasses = "text-white bg-black border border-brass-600/60";
+  const secondaryClasses = "text-white bg-transparent border border-brass-600/60";
 
   return (
     <motion.button
