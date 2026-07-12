@@ -38,7 +38,7 @@ export default function HeroSection() {
       >
         <source src="/gym%20final.MP4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-purple/40 via-black to-black" />
 
       {/* Animated Gradient Curves */}
       <motion.svg
@@ -72,9 +72,9 @@ export default function HeroSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="font-cult-body text-sm tracking-[0.35em] text-bright-purple mb-4 uppercase"
+          className="font-cult-body text-sm tracking-[0.35em] text-white/80 mb-4"
         >
-          FORGED IN
+          WE ARE
         </motion.p>
 
         <motion.h1
@@ -85,7 +85,7 @@ export default function HeroSection() {
           viewport={{ once: true }}
           className="font-cult text-7xl md:text-9xl font-bold text-white lowercase mb-6"
         >
-          Shadnagar
+          alpha
         </motion.h1>
 
         <motion.p
@@ -96,8 +96,9 @@ export default function HeroSection() {
           viewport={{ once: true }}
           className="font-cult-body text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Where serious athletes come to transform.<br/>
-          No excuses. No egos. Just results.
+          A fitness movement in <span className="font-semibold">Shadnagar</span>
+          <br />
+          worth breaking a sweat for
         </motion.p>
 
         {/* CTA */}
@@ -107,12 +108,12 @@ export default function HeroSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          whileHover={{ scale: 1.08 }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToPricing}
-          className="px-10 py-4 bg-bright-purple text-white font-cult-body text-sm font-semibold rounded-lg tracking-wide shadow-[0_20px_50px_rgba(168,85,247,0.4)] hover:shadow-[0_30px_60px_rgba(168,85,247,0.6)] hover:bg-bright-purple/90 transition-all duration-300"
+          className="px-10 py-4 bg-white text-black font-cult-body text-sm font-semibold rounded-md tracking-wide shadow-xl hover:bg-white/90 transition"
         >
-          START YOUR JOURNEY
+          EXPLORE MEMBERSHIPS
         </motion.button>
       </div>
 
@@ -127,3 +128,4 @@ export default function HeroSection() {
     </motion.section>
   );
 }
+
