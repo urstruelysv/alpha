@@ -44,10 +44,17 @@ export default function ServicesSection() {
         {/* 2x2 Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service) => (
-            <Card key={service.title}>
-              <CardHeader>
-                <CardTitle>{service.title}</CardTitle>
-                <CardDescription>{service.vibe}</CardDescription>
+            <Card
+              key={service.title}
+              className="rounded-3xl border-0 bg-[radial-gradient(circle_at_center,#1a1510,#0a0a0a)] min-h-[400px]"
+            >
+              <CardHeader className="p-8">
+                <CardTitle className="text-2xl font-bold text-[#ececec]">
+                  {service.title}
+                </CardTitle>
+                <CardDescription className="text-[15px] text-[#a3a3a3] mt-2">
+                  {service.vibe}
+                </CardDescription>
               </CardHeader>
             </Card>
           ))}
