@@ -2,6 +2,7 @@
 
 @theme {
   --color-bright-purple: #A855F7;
+  --color-deep-purple: #7C3AED;
 }
 
 :root {
@@ -27,4 +28,60 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-300;
+}
+
+button {
+  @apply transition-all duration-300;
+}
+
+/* Section spacing */
+section {
+  @apply py-20 md:py-24;
+}
+
+/* Better button styles */
+.btn-primary {
+  @apply px-6 py-3 bg-bright-purple hover:bg-bright-purple/90 text-white font-semibold rounded-lg shadow-lg hover:shadow-[0_20px_40px_rgba(168,85,247,0.3)] transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-transparent border border-bright-purple text-bright-purple hover:bg-bright-purple hover:text-black font-semibold rounded-lg transition-all duration-300;
+}
+
+/* Card improvements */
+.card-gradient {
+  @apply bg-gradient-to-br from-zinc-900 to-black border border-bright-purple/10;
+}
+
+/* Container */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Heading styles */
+.heading-lg {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-white;
+}
+
+.heading-md {
+  @apply text-2xl md:text-3xl font-bold text-white;
+}
+
+.heading-sm {
+  @apply text-xl md:text-2xl font-bold text-white;
+}
+
+/* Text styles */
+.text-body {
+  @apply text-base md:text-lg text-white/70;
 }

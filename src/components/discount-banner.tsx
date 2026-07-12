@@ -86,7 +86,7 @@ export default function DiscountBanner() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-      className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 text-center shadow-lg cursor-pointer hover:from-purple-700 hover:to-indigo-700 transition-colors"
+      className="bg-gradient-to-r from-bright-purple to-purple-600 text-white py-4 px-4 text-center shadow-[0_10px_30px_rgba(168,85,247,0.3)] cursor-pointer hover:from-bright-purple/90 hover:to-purple-600/90 transition-all duration-300"
       onClick={handleClick}
     >
       <div className="container mx-auto flex items-center justify-center gap-4">

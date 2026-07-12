@@ -40,9 +40,9 @@ export default function TrainersSection() {
     <section id="trainers" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Meet Our Expert Trainers</h2>
+          <h2 className="heading-lg text-white mb-4">Your Coaches Are Real Athletes</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Certified professionals dedicated to helping you achieve your fitness goals
+            Not just certified. Actually strong. They get it because they do it.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function TrainersSection() {
             {trainers.map((trainer) => (
               <div
                 key={trainer.id}
-                className="group rounded-lg overflow-hidden bg-gray-900 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
+                className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(168,85,247,0.2)]"
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">

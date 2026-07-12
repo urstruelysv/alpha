@@ -35,9 +35,9 @@ export default function CommunitySection() {
     <section id="community" className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">Join the Alpha Community</h2>
+          <h2 className="heading-lg text-white mb-4">You're Not Alone Here</h2>
           <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Be part of a supportive community of fitness enthusiasts
+            Community events, challenges, and real people pushing together
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export default function CommunitySection() {
           {communityEvents.map((event, index) => (
             <div
               key={index}
-              className="group rounded-lg overflow-hidden bg-deep-purple/10 border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300"
+              className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(168,85,247,0.2)]"
             >
               {/* Image */}
               <div className="relative h-40 overflow-hidden">

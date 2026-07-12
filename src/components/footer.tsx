@@ -26,7 +26,7 @@ export default function Footer() {
               <span className="font-oswald font-bold text-lg text-white">Alpha Fitness</span>
             </Link>
             <p className="text-white/60 text-sm mb-6">
-              Shadnagar&apos;s largest and most advanced fitness center. Join our community and transform your life.
+              Where serious athletes train. Smart programming, authentic coaches, zero nonsense. Built for people who actually show up.
             </p>
             <SocialIcons />
           </div>
@@ -81,7 +81,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-bright-purple/20 pt-8 text-center text-sm text-white/60">
-          <p>&copy; {new Date().getFullYear()} Aethos vison labs. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Alpha Fitness Shadnagar. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

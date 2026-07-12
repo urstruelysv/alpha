@@ -99,7 +99,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
               >
-                {/* Background caution text */}
+                {/* Background warning text */}
                 <motion.div
                   className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                   initial={{ opacity: 0 }}
@@ -111,12 +111,12 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                       key={i}
                       className="text-[clamp(3rem,15vw,10rem)] sm:text-[clamp(8rem,25vw,35rem)] font-oswald font-black tracking-tighter leading-none"
                       style={{
-                        WebkitTextStroke: '2px rgba(124, 58, 237, 0.8)',
+                        WebkitTextStroke: '2px rgba(168, 85, 247, 0.8)',
                         color: 'transparent',
-                        textShadow: '0 0 50px rgba(124, 58, 237, 0.3)',
+                        textShadow: '0 0 50px rgba(168, 85, 247, 0.3)',
                       }}
                     >
-                      CAUTION
+                      BEAST MODE
                     </div>
                   ))}
                 </motion.div>
@@ -128,19 +128,19 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <p className="text-lg sm:text-2xl text-white/90 font-oswald font-bold tracking-wider mb-6 sm:mb-8">
-                    IF YOU PRESS THIS BUTTON
+                    Ready to level up?
                   </p>
                   <motion.button
                     onClick={startLoading}
-                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-purple-600/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_30px_rgba(124,58,237,0.3)] transition-all duration-300"
+                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-bright-purple/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_30px_rgba(168,85,247,0.3)] transition-all duration-300"
                     whileHover={{
                       scale: 1.05,
                       boxShadow:
-                        '0 0 40px rgba(168,85,247,0.8), inset 0 0 25px rgba(124,58,237,0.6)',
+                        '0 0 40px rgba(168,85,247,0.8), inset 0 0 25px rgba(168,85,247,0.6)',
                     }}
                     whileTap={{ scale: 0.96 }}
                   >
-                    YOUR BODY GETS TRANSFORMED
+                    Let's go
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -186,14 +186,14 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
                 </motion.div>
 
-                {/* Central FORGING ALPHAS */}
+                {/* Central loading message */}
                 <motion.h1
                   className="relative z-10 text-4xl sm:text-6xl font-extrabold text-neutral-50 tracking-widest font-oswald uppercase drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9 }}
                 >
-                  FORGING ALPHAS
+                  Igniting Power
                 </motion.h1>
 
                 {/* Orb
@@ -229,13 +229,13 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   {progress}%
                 </motion.span>
 
-                {/* PREPARING YOUR TRANSFORMATION */}
+                {/* Status message */}
                 <motion.p
                   className="absolute bottom-8 sm:bottom-16 left-1/2 -translate-x-1/2 text-neutral-50 text-xs sm:text-lg tracking-widest font-oswald"
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  PREPARING YOUR TRANSFORMATION
+                  GET READY TO CRUSH IT
                 </motion.p>
               </motion.div>
             )}

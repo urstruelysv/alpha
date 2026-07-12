@@ -76,11 +76,11 @@ export default function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06 }}
               viewport={{ once: true }}
-              className={`relative rounded-xl border p-6 bg-zinc-900 flex flex-col
+              className={`relative rounded-2xl border p-6 flex flex-col transition-all duration-300 hover:shadow-[0_25px_60px_rgba(168,85,247,0.2)]
                 ${
                   plan.popular
-                    ? 'border-purple-500'
-                    : 'border-zinc-800'
+                    ? 'bg-gradient-to-br from-purple-950 to-black border-bright-purple/60 shadow-[0_0_40px_rgba(168,85,247,0.2)]'
+                    : 'bg-gradient-to-br from-zinc-900/80 to-black border-bright-purple/20 hover:border-bright-purple/40'
                 }`}
             >
               {plan.popular && (
@@ -117,11 +117,11 @@ export default function PricingSection() {
               </div>
 
               <button
-                className={`mt-8 w-full rounded-lg py-3 font-medium transition
+                className={`mt-8 w-full rounded-lg py-3 font-semibold transition-all duration-300
                   ${
                     plan.popular
-                      ? 'bg-purple-500 text-white hover:bg-purple-600'
-                      : 'bg-zinc-800 text-white hover:bg-zinc-700'
+                      ? 'bg-bright-purple text-white hover:bg-bright-purple/90 shadow-[0_15px_40px_rgba(168,85,247,0.3)] hover:shadow-[0_20px_50px_rgba(168,85,247,0.5)]'
+                      : 'bg-zinc-800 text-white hover:bg-zinc-700 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)]'
                   }`}
               >
                 Start Training at Alpha
