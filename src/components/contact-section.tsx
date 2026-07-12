@@ -224,9 +224,9 @@ export default function ContactSection() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-deep-purple/20 border ${
+                    className={`w-full px-4 py-3 rounded-lg bg-zinc-900/50 border ${
                       errors.email ? 'border-red-500' : 'border-bright-purple/30'
-                    } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple transition-colors`}
+                    } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple focus:ring-2 focus:ring-bright-purple/30 transition-all duration-300`}
                     placeholder="your@email.com"
                   />
                   {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -242,7 +242,7 @@ export default function ContactSection() {
                   name="package"
                   value={formData.package}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-deep-purple/20 border border-bright-purple/30 text-white focus:outline-none focus:border-bright-purple transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-zinc-900/50 border border-bright-purple/30 text-white focus:outline-none focus:border-bright-purple focus:ring-2 focus:ring-bright-purple/30 transition-all duration-300"
                 >
                   <option value="">Select a package</option>
                   <option value="1-month">1 Month</option>
@@ -262,9 +262,9 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className={`w-full px-4 py-3 rounded-lg bg-deep-purple/20 border ${
+                  className={`w-full px-4 py-3 rounded-lg bg-zinc-900/50 border ${
                     errors.message ? 'border-red-500' : 'border-bright-purple/30'
-                  } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple transition-colors resize-none`}
+                  } text-white placeholder-white/40 focus:outline-none focus:border-bright-purple focus:ring-2 focus:ring-bright-purple/30 transition-all duration-300 resize-none`}
                   placeholder="Tell us about your fitness goals..."
                 />
                 {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
@@ -273,7 +273,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_15px_40px_rgba(168,85,247,0.3)] flex items-center justify-center gap-2"
               >
                 <Send className="w-5 h-5" />
                 {isSubmitting ? 'Sending...' : 'Send Message'}

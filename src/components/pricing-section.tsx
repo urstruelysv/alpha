@@ -117,11 +117,11 @@ export default function PricingSection() {
               </div>
 
               <button
-                className={`mt-8 w-full rounded-lg py-3 font-medium transition
+                className={`mt-8 w-full rounded-lg py-3 font-semibold transition-all duration-300
                   ${
                     plan.popular
-                      ? 'bg-purple-500 text-white hover:bg-purple-600'
-                      : 'bg-zinc-800 text-white hover:bg-zinc-700'
+                      ? 'bg-bright-purple text-white hover:bg-bright-purple/90 shadow-[0_15px_40px_rgba(168,85,247,0.3)] hover:shadow-[0_20px_50px_rgba(168,85,247,0.5)]'
+                      : 'bg-zinc-800 text-white hover:bg-zinc-700 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)]'
                   }`}
               >
                 Start Training at Alpha

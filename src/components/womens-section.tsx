@@ -65,7 +65,7 @@ export default function WomensSection() {
         </div>
 
         {/* Testimonials */}
-        <div className="bg-deep-purple/20 rounded-lg p-8 border border-bright-purple/20">
+        <div className="bg-gradient-to-br from-zinc-900/80 to-black rounded-2xl p-8 border border-bright-purple/20 shadow-[0_20px_60px_rgba(168,85,247,0.15)]">
           <h3 className="heading-md text-white mb-8 text-center">What Our Members Say</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
