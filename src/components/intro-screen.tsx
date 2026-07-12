@@ -176,12 +176,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 </motion.div>
                 <motion.div className="text">
                 <Image
-                    src="/alpha-fitness-logo.png"
+                    src="/logo-white.png"
                     alt="Alpha Fitness"
                     width={256}
                     height={256}
                     className="w-36 sm:w-64 h-auto object-contain drop-shadow-[0_8px_30px_rgba(124,58,237,0.45)]"
-                    // if you prefer a transparent PNG ensure file exists at /public/alpha-fitness-logo.png
                   />
 
                 </motion.div>
