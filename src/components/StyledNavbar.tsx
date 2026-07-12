@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -27,9 +28,7 @@ const NavbarButton = ({ children, variant, className, ...props }: { children: Re
 
 const NavbarLogo = () => (
   <Link href="/" className="flex items-center gap-2">
-    <div className="w-10 h-10 bg-bright-purple rounded-lg flex items-center justify-center">
-      <span className="font-oswald font-bold text-black">AF</span>
-    </div>
+    <Image src="/logo-white.png" alt="Alpha Fitness Logo" width={40} height={40} className="w-10 h-10 object-contain" />
     <span className="hidden sm:inline font-oswald font-bold text-lg text-white">Alpha Fitness</span>
   </Link>
 );
