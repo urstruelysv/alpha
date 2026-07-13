@@ -1,79 +1,76 @@
 'use client';
 
 import Image from 'next/image';
-import { Users, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const communityEvents = [
-  {
-    title: 'Monthly Fitness Challenge',
-    date: 'Every 1st Saturday',
-    attendees: '150+',
-    image: '/placeholder.svg?height=250&width=300',
-  },
-  {
-    title: 'Group Yoga Sessions',
-    date: 'Weekdays 6 AM',
-    attendees: '80+',
-    image: '/placeholder.svg?height=250&width=300',
-  },
-  {
-    title: 'Community Workout',
-    date: 'Sundays 7 AM',
-    attendees: '200+',
-    image: '/placeholder.svg?height=250&width=300',
-  },
-  {
-    title: 'Nutrition Workshops',
-    date: 'Monthly',
-    attendees: '60+',
-    image: '/placeholder.svg?height=250&width=300',
-  },
+  { eyebrow: 'MONTHLY', title: 'Fitness Challenge', image: '/fitness-challenge.png' },
+  { eyebrow: 'GROUP CLASS', title: 'Yoga Sessions', image: '/yoga.jpg' },
+  { eyebrow: 'TOGETHER', title: 'Community Workout', image: '/community-workout.png' },
+  { eyebrow: 'LEARN', title: 'Nutrition Workshops', image: '/nutrition.png' },
 ];
 
 export default function CommunitySection() {
   return (
-    <section id="community" className="py-20">
+    <section id="community" className="py-24">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="heading-lg text-white mb-4">You're Not Alone Here</h2>
-          <p className="text-body text-white/60 max-w-2xl mx-auto">
-            Community events, challenges, and real people pushing together
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-5xl font-light text-white mb-3 tracking-tight">
+            You&apos;re Not Alone Here
+          </h2>
+          <p className="text-white/50 max-w-xl mx-auto font-light text-base md:text-lg">
+            Community events. Real people. Real progress.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {communityEvents.map((event, index) => (
-            <div
-              key={index}
-              className="group rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black border border-bright-purple/20 hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_20px_60px_rgba(168,85,247,0.2)]"
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {communityEvents.map((event) => (
+            <motion.div
+              key={event.title}
+              className="group relative rounded-[1.75rem] overflow-hidden aspect-[3/4]"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
             >
-              {/* Image */}
-              <div className="relative h-40 overflow-hidden">
+              {/* glow */}
+              <motion.div
+                variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+                transition={{ duration: 0.4 }}
+                className="pointer-events-none absolute -inset-px rounded-[1.75rem] z-20"
+                style={{
+                  boxShadow:
+                    '0 0 0 1px rgba(255,255,255,0.15), 0 20px 60px -10px rgba(255,255,255,0.15)',
+                }}
+              />
+
+              {/* image, scales on hover */}
+              <motion.div
+                variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0"
+              >
                 <Image
-                  src={event.image || "/placeholder.svg"}
+                  src={event.image}
                   alt={event.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-              </div>
+              </motion.div>
 
-              {/* Content */}
-              <div className="p-4">
-                <h3 className="heading-md text-white mb-3 text-lg">{event.title}</h3>
+              {/* gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-                <div className="space-y-2 text-sm text-white/70">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-bright-purple" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-bright-purple" />
-                    <span>{event.attendees} members</span>
-                  </div>
-                </div>
+              {/* text */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                <p className="text-white/60 text-[11px] font-medium tracking-[0.15em] uppercase mb-1">
+                  {event.eyebrow}
+                </p>
+                <h3 className="text-white text-xl md:text-2xl font-semibold tracking-tight leading-tight">
+                  {event.title}
+                </h3>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

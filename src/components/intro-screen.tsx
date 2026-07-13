@@ -44,7 +44,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
     <AnimatePresence>
       {step !== 'finished' && (
         <motion.div
-          className="fixed inset-0 bg-purple flex flex-col items-center justify-center z-50 overflow-hidden"
+          className="fixed inset-0 bg-neutral-950 flex flex-col items-center justify-center z-50 overflow-hidden"
           exit={{ y: '-110%' }}
           transition={{ duration: 1.1, ease: [0.12, 1.12, 0.8, 0.81] }}
         >
@@ -111,9 +111,9 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                       key={i}
                       className="text-[clamp(3rem,15vw,10rem)] sm:text-[clamp(8rem,25vw,35rem)] font-oswald font-black tracking-tighter leading-none"
                       style={{
-                        WebkitTextStroke: '2px rgba(124, 58, 237, 0.8)',
+                        WebkitTextStroke: '2px rgba(166, 124, 61, 0.8)',
                         color: 'transparent',
-                        textShadow: '0 0 50px rgba(124, 58, 237, 0.3)',
+                        textShadow: '0 0 50px rgba(166, 124, 61, 0.3)',
                       }}
                     >
                       CAUTION
@@ -132,11 +132,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   </p>
                   <motion.button
                     onClick={startLoading}
-                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-purple-600/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(168,85,247,0.5),0_0_30px_rgba(124,58,237,0.3)] transition-all duration-300"
+                    className="relative px-6 sm:px-10 py-3 sm:py-4 font-oswald font-black text-lg sm:text-xl uppercase tracking-widest text-white bg-black border border-brass-600/60 rounded-xl overflow-hidden group shadow-[inset_0_0_10px_rgba(166,124,61,0.5),0_0_30px_rgba(166,124,61,0.3)] transition-all duration-300"
                     whileHover={{
                       scale: 1.05,
                       boxShadow:
-                        '0 0 40px rgba(168,85,247,0.8), inset 0 0 25px rgba(124,58,237,0.6)',
+                        '0 0 40px rgba(166,124,61,0.8), inset 0 0 25px rgba(166,124,61,0.6)',
                     }}
                     whileTap={{ scale: 0.96 }}
                   >
@@ -180,7 +180,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                     alt="Alpha Fitness"
                     width={256}
                     height={256}
-                    className="w-36 sm:w-64 h-auto object-contain drop-shadow-[0_8px_30px_rgba(124,58,237,0.45)]"
+                    className="w-36 sm:w-64 h-auto object-contain drop-shadow-[0_8px_30px_rgba(166,124,61,0.45)]"
                   />
 
                 </motion.div>
@@ -195,23 +195,6 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                   FORGING ALPHAS
                 </motion.h1>
 
-                {/* Orb
-                <motion.div
-                  className="relative z-10 mt-12 sm:mt-20 scale-75 sm:scale-100"
-                  animate={{ scale: [1, 1.1, 1], rotate: [0, 180, 360] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                >
-                  <div className="w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-gradient-to-br from-bright-purple to-purple-900 shadow-[0_0_60px_rgba(124,58,237,0.8)]" />
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-bright-purple"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.div> */}
-
                 {/* Progress bar */}
                 <div className="absolute bottom-0 left-0 w-full h-full bg-black/50 border-b border-neutral-100">
                   <motion.div
@@ -221,7 +204,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 </div>
 
                 <motion.span
-                  className="absolute bottom-20 right-8 sm:right-12 font-oswald text-3xl sm:text-6xl font-black bg-gradient-to-r from-bright-purple to-purple-400 bg-clip-text text-transparent"
+                  className="absolute bottom-20 right-8 sm:right-12 font-oswald text-3xl sm:text-6xl font-black bg-gradient-to-r from-bright-purple to-brass-400 bg-clip-text text-transparent"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 >

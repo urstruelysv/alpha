@@ -17,8 +17,8 @@ const faqs = [
     answer: 'Alpha Fitness is open 24/7 for all members. We have staff on-site during peak hours (6 AM - 10 PM) for assistance and guidance.',
   },
   {
-    question: 'Do you have women-only training hours?',
-    answer: 'Yes, we have dedicated women-only training hours from 6 AM - 8 AM and 6 PM - 8 PM on weekdays. Our female trainers are available during these times.',
+    question: 'Is Alpha Fitness a good place for women to start?',
+    answer: 'Yes. Many of our members are women who were new to the gym. Our coaches guide you with respect, the floor is welcoming, and you can start at your own pace with a free trial.',
   },
   {
     question: 'What equipment do you have?',
@@ -55,7 +55,7 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-bright-purple/20 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(168,85,247,0.15)]"
+              className="border border-bright-purple/20 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900/80 to-black hover:border-bright-purple/50 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(166,124,61,0.15)]"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}

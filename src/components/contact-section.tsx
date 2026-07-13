@@ -135,7 +135,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3 className="text-white font-oswald font-semibold mb-1">Phone</h3>
-                <p className="text-white/60">+91 9876 543 210</p>
+                <p className="text-white/60">+91 91822 35921 / 86885 75759</p>
               </div>
             </div>
 
@@ -147,11 +147,16 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3 className="text-white font-oswald font-semibold mb-1">Email</h3>
-                <p className="text-white/60">info@alphafitness.in</p>
+                <p className="text-white/60">alphafintness@gmail.com</p>
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <a
+              href="https://maps.app.goo.gl/8L7jPDTeRge4eF139?g_st=iw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-4 hover:opacity-80 transition-opacity"
+            >
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-bright-purple/20">
                   <MapPin className="h-6 w-6 text-bright-purple" />
@@ -159,13 +164,13 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3 className="text-white font-oswald font-semibold mb-1">Location</h3>
-                <p className="text-white/60">Shadnagar, Telangana</p>
+                <p className="text-white/60">Alpha fitness center, Mahaboobnagar road, Shadnagar, Telangana</p>
               </div>
-            </div>
+            </a>
 
             {/* WhatsApp Link */}
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919182235921"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors"
@@ -273,7 +278,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_15px_40px_rgba(168,85,247,0.3)] flex items-center justify-center gap-2"
+                className="w-full py-3 bg-bright-purple hover:bg-bright-purple/90 disabled:bg-bright-purple/50 text-black font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_15px_40px_rgba(166,124,61,0.3)] flex items-center justify-center gap-2"
               >
                 <Send className="w-5 h-5" />
                 {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -288,18 +293,17 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Map Embed */}
-        <div className="rounded-lg overflow-hidden h-96 border border-bright-purple/20">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.5678901234!2d78.3456!3d17.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91234567%3A0x1234567890abcdef!2sShadnagar%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Alpha Fitness Location"
-          />
+        {/* Location Link */}
+        <div className="rounded-lg overflow-hidden h-96 border border-bright-purple/20 flex items-center justify-center bg-zinc-900/50">
+          <a
+            href="https://maps.app.goo.gl/8L7jPDTeRge4eF139?g_st=iw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-4 text-bright-purple hover:text-white transition-colors"
+          >
+            <MapPin className="w-16 h-16" />
+            <span className="text-xl font-semibold">View on Google Maps</span>
+          </a>
         </div>
       </div>
     </section>

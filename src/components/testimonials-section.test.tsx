@@ -14,15 +14,15 @@ describe('TestimonialsSection', () => {
 
   it('renders the first testimonial by default', () => {
     render(<TestimonialsSection />);
-    expect(screen.getByText('Rahul Verma')).toBeInTheDocument();
-    expect(screen.getByText(/Alpha Fitness completely transformed my fitness journey/i)).toBeInTheDocument();
+    expect(screen.getByText('Member 1')).toBeInTheDocument();
+    expect(screen.getByText(/Tried a dozen gyms/i)).toBeInTheDocument();
   });
 
   it('navigates to the next testimonial when the next button is clicked', () => {
     render(<TestimonialsSection />);
     const nextButton = screen.getByLabelText('Next testimonial');
     fireEvent.click(nextButton);
-    expect(screen.getByText('Meera Singh')).toBeInTheDocument();
+    expect(screen.getByText('Akshara')).toBeInTheDocument();
   });
 
   it('navigates to the previous testimonial when the previous button is clicked', () => {
@@ -30,19 +30,19 @@ describe('TestimonialsSection', () => {
     const prevButton = screen.getByLabelText('Previous testimonial');
     fireEvent.click(prevButton);
     // It should wrap around to the last testimonial
-    expect(screen.getByText('Kavya Sharma')).toBeInTheDocument();
+    expect(screen.getByText('Member 3')).toBeInTheDocument();
   });
 
   it('navigates to a specific testimonial when a dot is clicked', () => {
     render(<TestimonialsSection />);
     const thirdDot = screen.getByLabelText('Go to testimonial 3');
     fireEvent.click(thirdDot);
-    expect(screen.getByText('Aditya Patel')).toBeInTheDocument();
+    expect(screen.getByText('Member 2')).toBeInTheDocument();
   });
 
   it('autoplays to the next testimonial after 5 seconds', async () => {
     render(<TestimonialsSection />);
-    expect(screen.getByText('Rahul Verma')).toBeInTheDocument();
+    expect(screen.getByText('Member 1')).toBeInTheDocument();
     
     // Advance timers by 5 seconds
     act(() => {
@@ -51,7 +51,7 @@ describe('TestimonialsSection', () => {
 
     // Wait for the state update and re-render
     await waitFor(() => {
-      expect(screen.getByText('Meera Singh')).toBeInTheDocument();
+      expect(screen.getByText('Akshara')).toBeInTheDocument();
     });
   });
 
@@ -59,7 +59,7 @@ describe('TestimonialsSection', () => {
     render(<TestimonialsSection />);
     const nextButton = screen.getByLabelText('Next testimonial');
     fireEvent.click(nextButton);
-    expect(screen.getByText('Meera Singh')).toBeInTheDocument();
+    expect(screen.getByText('Akshara')).toBeInTheDocument();
 
     // Advance timers by 5 seconds
     act(() => {
@@ -68,8 +68,8 @@ describe('TestimonialsSection', () => {
 
     // The testimonial should still be the one we navigated to, not the next one in sequence
     await waitFor(() => {
-      expect(screen.getByText('Meera Singh')).toBeInTheDocument();
-      expect(screen.queryByText('Aditya Patel')).not.toBeInTheDocument();
+      expect(screen.getByText('Akshara')).toBeInTheDocument();
+      expect(screen.queryByText('Member 2')).not.toBeInTheDocument();
     });
   });
 });

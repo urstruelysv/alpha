@@ -1,0 +1,26 @@
+You are tasked with replacing Tailwind CSS color classes and hardcoded hex codes.
+
+Files to modify:
+src/app/gallery/page.tsx
+src/components/StyledNavbar.tsx
+src/components/community-section.tsx
+src/components/contact-section.tsx
+src/components/discount-banner.tsx
+src/components/faq-section.tsx
+src/components/footer.tsx
+src/components/gallery-section.tsx
+src/components/hero-section.tsx
+src/components/intro-screen.tsx
+src/components/pricing-section.tsx
+src/components/services-section.tsx
+src/components/social-icons.tsx
+src/components/testimonials-section.tsx
+src/components/trainers-section.tsx
+src/components/womens-section.tsx
+
+Rules:
+1. Do not touch files outside this list.
+2. Replace Tailwind classes using purple- or violet- (e.g., bg-purple-500, text-purple-400, border-purple-600) with equivalent brass- classes (keeping shade and modifiers).
+3. Replace hardcoded purple/violet hex values with closest brass hex (50: #faf6f0, 100: #f0e4d0, 200: #e0c99e, 300: #cdad6f, 400: #b8934c, 500: #a67c3d, 600: #8a6530, 700: #6d4f26, 800: #503a1c, 900: #342512, 950: #1a1510).
+4. Provide a summary count of replacements made per file.
+5. If unsure about a mapping, prioritize maintaining the visual intent.

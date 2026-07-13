@@ -2,33 +2,35 @@ import { render, screen } from '@testing-library/react';
 import WomensSection from './womens-section';
 
 describe('WomensSection', () => {
-  it('renders the main heading and description', () => {
+  it('renders the heading and Shadnagar-focused copy', () => {
     render(<WomensSection />);
-    expect(screen.getByText('Dedicated Programs for Women')).toBeInTheDocument();
-    expect(screen.getByText(/Our women-only fitness programs are designed to create a supportive/i)).toBeInTheDocument();
+    expect(screen.getByText('Space Where You Belong')).toBeInTheDocument();
+    expect(
+      screen.getByText('Best Gym in Shadnagar for Women')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/A respectful floor\. Coaches and staff who look out/i)
+    ).toBeInTheDocument();
   });
 
-  it('renders the list of features for the women\'s program', () => {
+  it('renders testimonials on safety, coaches, and community', () => {
     render(<WomensSection />);
-    expect(screen.getByText('Expert female trainers')).toBeInTheDocument();
-    expect(screen.getByText('Women-only training hours')).toBeInTheDocument();
-    expect(screen.getByText('Personalized coaching')).toBeInTheDocument();
-    expect(screen.getByText('Community support')).toBeInTheDocument();
+    expect(screen.getByText('Keerthana Reddy')).toBeInTheDocument();
+    expect(screen.getByText('Lavanya Goud')).toBeInTheDocument();
+    expect(screen.getByText('Sruthi Yadav')).toBeInTheDocument();
+    expect(screen.getByText(/I feel safe here/i)).toBeInTheDocument();
+    expect(screen.getByText(/Best coaches in Shadnagar/i)).toBeInTheDocument();
+    expect(screen.getByText(/The community keeps me coming back/i)).toBeInTheDocument();
   });
 
-  it('renders the testimonials from female members', () => {
-    render(<WomensSection />);
-    expect(screen.getByText('What Our Members Say')).toBeInTheDocument();
-    // Check for one of the testimonials
-    expect(screen.getByText(/Alpha Fitness transformed my confidence/i)).toBeInTheDocument();
-    expect(screen.getByText('Priya')).toBeInTheDocument();
-    // Check for all testimonials
-    expect(screen.getByText('Anjali')).toBeInTheDocument();
-    expect(screen.getByText('Sneha')).toBeInTheDocument();
-  });
 
-  it('renders the "Learn More" button', () => {
+  it('renders the photo and conversion CTA', () => {
     render(<WomensSection />);
-    expect(screen.getByRole('button', { name: 'Learn More' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: /women training safely/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Start Your Journey' })
+    ).toBeInTheDocument();
   });
 });
