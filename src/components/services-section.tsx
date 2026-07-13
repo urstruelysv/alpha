@@ -2,8 +2,15 @@
 
 import { Sparkles, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react';
+
+const transformationImages = [
+  '/transformation-final.png',
+  '/womens-fitness.jpg',
+  '/yoga.jpg',
+];
 
 const services = [
   {
