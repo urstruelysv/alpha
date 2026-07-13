@@ -17,8 +17,8 @@ const faqs = [
     answer: 'Alpha Fitness is open 24/7 for all members. We have staff on-site during peak hours (6 AM - 10 PM) for assistance and guidance.',
   },
   {
-    question: 'Do you have women-only training hours?',
-    answer: 'Yes, we have dedicated women-only training hours from 6 AM - 8 AM and 6 PM - 8 PM on weekdays. Our female trainers are available during these times.',
+    question: 'Is Alpha Fitness a good place for women to start?',
+    answer: 'Yes. Many of our members are women who were new to the gym. Our coaches guide you with respect, the floor is welcoming, and you can start at your own pace with a free trial.',
   },
   {
     question: 'What equipment do you have?',

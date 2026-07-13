@@ -47,17 +47,17 @@ export default function Footer() {
           <div>
             <h3 className="font-oswald font-semibold text-white mb-4">Contact Us</h3>
             <div className="space-y-4 text-sm">
-              <div className="flex items-start gap-3">
+              <a href="https://maps.app.goo.gl/8L7jPDTeRge4eF139?g_st=iw" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 hover:opacity-80 transition-opacity">
                 <MapPin className="w-4 h-4 text-bright-purple mt-1 flex-shrink-0" />
                 <p className="text-white/70">Shadnagar, Telangana, India</p>
-              </div>
+              </a>
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-bright-purple mt-1 flex-shrink-0" />
-                <p className="text-white/70">+91 9876 543 210</p>
+                <p className="text-white/70">+91 91822 35921 / 86885 75759</p>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-bright-purple mt-1 flex-shrink-0" />
-                <p className="text-white/70">info @alphafitness.in</p>
+                <p className="text-white/70">alphafintness@gmail.com</p>
               </div>
             </div>
           </div>
