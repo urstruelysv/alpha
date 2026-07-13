@@ -49,21 +49,29 @@ export default function HeroSection() {
     };
 
     const onEnded = () => {
-      video.currentTime = 0;
+      video.currentTime = 5;
       void ensurePlaying();
     };
 
     video.addEventListener('ended', onEnded);
     document.addEventListener('visibilitychange', onVisibility);
 
+    // Set start time once metadata is loaded
+    const setStartTime = () => {
+      if (video.currentTime < 5) video.currentTime = 5;
+    };
+    video.addEventListener('loadedmetadata', setStartTime);
+
     // Retry once shortly after mount (helps after intro screen unmounts)
     const retry = window.setTimeout(() => {
       void ensurePlaying();
+      if (video.currentTime < 5) video.currentTime = 5;
     }, 300);
 
     return () => {
       video.removeEventListener('ended', onEnded);
       document.removeEventListener('visibilitychange', onVisibility);
+      video.removeEventListener('loadedmetadata', setStartTime);
       window.clearTimeout(retry);
     };
   }, []);
